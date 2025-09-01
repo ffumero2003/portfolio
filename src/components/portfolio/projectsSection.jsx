@@ -62,11 +62,11 @@ export default function ProjectsSection() {
           max-w-5xl mx-auto"
       >
         {PROJECTS.map((p, i) => {
-          const hidden = !showAll && i >= PAGE_SIZE; // render ALWAYS, only hide visually
+          const hidden = !showAll && i >= PAGE_SIZE;
           return (
             <RevealOnScroll
-              key={ids[i]}                 // stable key
-              enableOnMobile={false}       // no animation on mobile
+              key={ids[i]}                 
+              enableOnMobile={false}       
               duration={0.6}
               once={!isDesktop}
               from={{ y: 14, autoAlpha: 0 }}
