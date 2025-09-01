@@ -1,0 +1,52 @@
+//este archivo lo que hace es guardar todas las 
+//variables globales del proyecto colores, tipografias, 
+//tamaños, espaciados, bordes, etc... 
+//si hipoteticamente quiero cambiar la paleta solo deberia tocar este archivo
+
+
+
+
+$alice-blue:        #E7F0F1;
+$midnight-green-1:  #004752;
+$midnight-green-2:  #003B45;
+$light-blue:        #ACCFD5;
+$midnight-green-3:  #025D6F;
+$jasmin-blue: #677376;
+$button-text: #ffffff;
+$color-button:       #003B45;  
+$color-button-hover: #025D6F;  
+$color-button-text:  #ffffff;   
+$color-tile:        color-mix(in srgb, #ffffff 60%, var(--color-surface) 10%);
+$color-tile-border: #e6e8eb;
+
+
+
+
+
+$color-primary:        $midnight-green-1;
+$color-primary-dark:   $midnight-green-2;
+$color-accent:         $midnight-green-3;
+$color-surface:        $alice-blue;
+$color-button-text:     $button-text;
+$color-muted:          $light-blue;
+$color-text:           $jasmin-blue;
+
+$color-outline-borders: $light-blue !default; 
+$color-outline: $color-outline-borders !default; 
+
+
+
+$color-outline:        $light-blue;
+
+$font-base: 'Neue Montreal', sans-serif;
+$radius: 12px;
+$spacing-1: 4px;
+$spacing-2: 8px;
+$spacing-3: 12px;
+$spacing-4: 16px;
+$spacing-6: 24px;
+$spacing-8: 32px;
+
+
+
+

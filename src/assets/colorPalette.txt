@@ -1,0 +1,15 @@
+| Elemento UI                  | Color Normal                | Hover/Foco                  | Active/Pressed            |
+| ---------------------------- | --------------------------- | --------------------------- | ------------------------- |
+| **Texto primario**           | Azul Oscuro `#102A43`       | Azul Medio Oscuro `#243B53` | Azul Brillante `#486581`  |
+| **Texto secundario**         | Azul Brillante `#486581`    | Azul Medio `#334E68`        | Azul Oscuro `#102A43`     |
+| **Enlaces**                  | Azul Medio `#334E68`        | Azul Oscuro `#102A43`       | Azul Muy Oscuro `#0A1A2F` |
+| **Botón primario - fondo**   | Azul Medio Oscuro `#243B53` | Azul Oscuro `#102A43`       | Azul Muy Oscuro `#0A1A2F` |
+| **Botón primario - texto**   | Blanco `#FFFFFF`            | Blanco `#FFFFFF`            | Blanco `#FFFFFF`          |
+| **Botón primario - borde**   | Azul Medio Oscuro `#243B53` | Azul Oscuro `#102A43`       | Azul Muy Oscuro `#0A1A2F` |
+| **Botón secundario - fondo** | Blanco `#FFFFFF`            | Azul Pastel `#BCCCDC`       | Azul Claro `#829AB1`      |
+| **Botón secundario - texto** | Azul Oscuro `#102A43`       | Azul Medio Oscuro `#243B53` | Azul Muy Oscuro `#0A1A2F` |
+| **Botón secundario - borde** | Azul Claro `#829AB1`        | Azul Medio `#334E68`        | Azul Oscuro `#102A43`     |
+| **Campos de input - fondo**  | Azul Pastel `#BCCCDC`       | Azul Claro `#829AB1`        | Azul Brillante `#486581`  |
+| **Campos de input - borde**  | Azul Claro `#829AB1`        | Azul Medio `#334E68`        | Azul Oscuro `#102A43`     |
+| **Fondo principal**          | Blanco `#FFFFFF`            | —                           | —                         |
+| **Fondo secundario**         | Azul Pastel `#BCCCDC`       | —                           | —                         |

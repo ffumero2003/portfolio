@@ -1,0 +1,108 @@
+🎨 Guía de Colores Globales — Tailwind + Paleta
+Títulos
+
+H1 → text-primary
+
+H2 → text-primaryDark
+
+H3 → text-accent
+
+H4, H5, H6 → text-text
+
+Texto
+
+Texto principal → text-text
+
+Texto secundario / descripción → text-muted
+
+Links → text-accent hover:text-primary
+
+Texto sobre fondos oscuros → text-surface
+
+Fondos
+
+Fondo principal de página → bg-surface
+
+Secciones destacadas → bg-primary text-surface
+
+Secciones oscuras → bg-primaryDark text-surface
+
+Bloques de contenido / cards → bg-surface border border-muted/50
+
+Fondos suaves para contraste → bg-muted/30
+
+Botones
+
+Botón primario
+
+Fondo → bg-primary
+
+Texto → text-surface
+
+Hover → hover:bg-primaryDark
+
+Borde (si aplica) → border border-primary
+
+Botón secundario
+
+Fondo → bg-surface
+
+Texto → text-primary
+
+Borde → border border-primary
+
+Hover → hover:bg-muted/30
+
+Botón acento / advertencia
+
+Fondo → bg-accent
+
+Texto → text-surface
+
+Hover → hover:bg-primaryDark
+
+Bordes y Outlines
+
+Borde estándar de tarjetas → border-muted/50
+
+Borde destacado → border-primary
+
+Outline decorativo (hero/welcome) → outline-outline/75
+
+Outline hover → hover:outline-outline/100
+
+Badges y Etiquetas
+
+Etiqueta informativa → bg-accent/20 text-accent
+
+Etiqueta destacada → bg-primary/20 text-primary
+
+Etiqueta en fondo oscuro → bg-surface/20 text-surface
+
+Inputs y Formularios
+
+Texto de input → text-text
+
+Borde de input → border-muted
+
+Borde en focus → focus:border-primary
+
+Placeholder → placeholder-muted
+
+Fondo de input → bg-surface
+
+Navbars y Footers
+
+Navbar principal → bg-primary text-surface
+
+Footer → bg-primaryDark text-surface
+
+Links navbar → text-surface hover:text-accent
+
+Estados
+
+Activo → text-primaryDark
+
+Hover general → hover:text-primary
+
+Deshabilitado → text-muted bg-muted/30 cursor-not-allowed

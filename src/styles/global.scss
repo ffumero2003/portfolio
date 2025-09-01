@@ -1,0 +1,290 @@
+// importa todos los otros archivos
+// aplica los estilos globales que deben estar en toda la web
+// único archivo importado al main.jsx
+@use './variables' as v;
+@use './reset';
+
+
+:root {
+  
+  --color-primary:        #{v.$color-primary};
+  --color-primary-dark:   #{v.$color-primary-dark};
+  --color-accent:         #{v.$color-accent};
+  --color-surface:        #{v.$color-surface};
+  --color-muted:          #{v.$color-muted};
+  --color-text:           #{v.$color-text};
+  --color-outline:        #{v.$color-outline-borders};
+  --color-button:         #{v.$color-button};
+  --color-button-hover:   #{v.$color-button-hover};
+  --color-button-text:    #{v.$color-button-text};
+  --color-tile:           #{v.$color-tile};
+  --color-tile-border:    #{v.$color-tile-border};
+
+
+  --card-ring:            #{v.$color-outline-borders};
+  --card-ring-hover:      color-mix(in srgb, #{v.$color-outline-borders} 75%, transparent);
+  --card-veil:            rgba(0, 0, 0, 0.45);
+
+  --btn-solid-bg:         #{v.$color-button};        
+  --btn-solid-text:       #{v.$color-button-text};
+
+  --btn-outline-bg:       color-mix(in srgb, #ffffff 30%, transparent);
+  --btn-outline-border:   #{v.$color-outline-borders};
+  --btn-outline-hover:    color-mix(in srgb, #ffffff 50%, transparent);
+
+  --overlay-title:        #ffffff;                    
+  --overlay-text:         rgba(255, 255, 255, 0.92);
+
+  --vanta-bg:   #f7fafc;   
+  --vanta-1:    #1a344a;   
+  --vanta-2:    #64a1a8;   
+}
+
+
+
+.dark {
+  
+  --color-primary:        #2bb3b1;  
+  --color-primary-dark:   #0a7071;  
+  --color-accent:         #71e6c4;  
+  --color-surface:        #0a0f12;  
+  --color-muted:          #1f2a31;  
+  --color-text:           #e6f1f3;  
+  --color-outline:        #47d8d6;  
+  --color-button:         #2bb3b1; 
+  --color-button-hover:   #0a7071;  
+  --color-button-text:    #061012;  
+  --color-tile:           color-mix(in srgb, #ffffff 50%, var(--color-surface) 10%);
+  --color-tile-border:    color-mix(in srgb, var(--color-outline) 80%, transparent);
+
+
+
+
+  --card-ring:            var(--color-outline);
+  --card-ring-hover:      color-mix(in srgb, var(--color-outline) 80%, transparent);
+  --card-veil:            rgba(0, 0, 0, 0.50);
+
+  --btn-solid-bg:         var(--color-button);
+  --btn-solid-text:       var(--color-button-text);
+
+  --btn-outline-bg:       color-mix(in srgb, #ffffff 10%, transparent);
+  --btn-outline-border:   var(--color-outline);
+  --btn-outline-hover:    color-mix(in srgb, #ffffff 70%, transparent);
+
+  --overlay-title:        #ffffff;
+  --overlay-text:         rgba(255, 255, 255, 0.92);
+
+  --vanta-bg:   #0a0f12;
+  --vanta-1:    #64a1a8;
+  --vanta-2:    #e7f5ff;
+}
+
+
+
+
+:root, .dark {
+  transition:
+    color .18s ease,
+    background-color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+
+
+
+
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-surface);
+}
+
+
+.dark ::selection {
+  background: var(--color-primary); 
+  color: var(--color-text);          
+}
+
+
+
+
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+
+html { 
+  scroll-behavior: smooth !important; 
+}
+
+
+section { 
+  scroll-margin-top: 80px;  
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+body {
+  font-family: v.$font-base;
+  background: var(--color-surface);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 v.$spacing-4 0;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 { color: var(--color-primary);       font-size: clamp(4rem, 7vw, 10rem); }
+h2 { color: var(--color-primary-dark);  font-size: clamp(2.5rem, 4vw, 6rem); }
+h3 { color: var(--color-accent);        font-size: clamp(2rem, 3vw, 5rem); }
+h4 { color: var(--color-text);          font-size: 1.25rem; }
+h5 { color: var(--color-text);          font-size: 1.125rem; }
+h6 { color: var(--color-text);          font-size: 1rem;    font-weight: 600; }
+
+p  { margin: 0 0 v.$spacing-4 0; color: var(--color-text); }
+small { font-size: 0.875rem; color: color-mix(in oklab, var(--color-text), var(--color-muted) 40%); }
+strong, b { font-weight: 700; color: var(--color-primary-dark); }
+
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color .15s ease, opacity .15s ease;
+
+  &:hover { color: var(--color-surface); }
+  &:active { color: var(--color-primary-dark); }
+  &:focus-visible { outline: 2px solid var(--color-outline); outline-offset: 2px; }
+}
+
+
+ul, ol { margin: 0 0 v.$spacing-4 1.25rem; }
+li { margin-block: v.$spacing-1; }
+
+
+hr {
+  border: 0;
+  border-top: 1px solid color-mix(in oklab, var(--color-muted), var(--color-text) 15%);
+  margin: v.$spacing-6 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$spacing-2;
+  padding: v.$spacing-2 v.$spacing-6;
+  border-radius: v.$radius;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease, background-color .12s ease, border-color .12s ease;
+  user-select: none;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+  }
+}
+
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-color: var(--color-primary);
+  
+  &:hover   { background: var(--color-primary-dark); border-color: var(--color-primary-dark); }
+  &:active  { transform: translateY(0); filter: brightness(0.98); }
+  &:focus-visible { outline: 2px solid var(--color-outline); outline-offset: 2px; }
+} 
+
+
+
+
+
+
+
+
+/* -------------------------------
+   Formularios
+-------------------------------- */
+input, textarea, select {
+  width: 100%;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid color-mix(in oklab, var(--color-muted), var(--color-text) 15%);
+  border-radius: v.$radius;
+  padding: v.$spacing-3 v.$spacing-4;
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease;
+
+  &::placeholder {
+    color: color-mix(in oklab, var(--color-muted), var(--color-text) 30%);
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary), transparent 80%);
+  }
+
+  &:disabled {
+    background: color-mix(in oklab, var(--color-surface), var(--color-muted) 20%);
+    cursor: not-allowed;
+  }
+}
+
+
+
+
+nav.navbar {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  padding: v.$spacing-4 v.$spacing-6;
+
+  a {
+    color: var(--color-surface);     
+  }
+  a:hover {
+    color: var(--color-accent);
+  }
+}
+
+
+footer.site-footer {
+  background: var(--color-primary-dark);
+  color: var(--color-surface);
+  padding: v.$spacing-6 v.$spacing-6;
+}
+
+
+
