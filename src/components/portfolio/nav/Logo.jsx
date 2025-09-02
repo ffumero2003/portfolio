@@ -1,30 +1,49 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import logoAnim from "../../lottie/LogoPortfolio.json"; 
 
 export default function Logo() {
   const ref = useRef(null);
+  const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(false);
 
   const FPS = logoAnim.fr ?? 30;
   const start = Math.floor(FPS * 0.6);
   const end = Math.floor(FPS * 2.5);
 
+  
+  useEffect(() => {
+    setIsMobile(window.matchMedia("(hover: none)").matches);
+  }, []);
+
+  const playAnimation = () => {
+    const item = ref.current?.animationItem;
+    if (!item) return;
+    item.setLoop(false); 
+    ref.current.playSegments([start, end], true);
+  };
+
+  const handleDesktopEnter = () => {
+    playAnimation();
+  };
+
+  const handleDesktopClick = (e) => {
+    e.preventDefault();
+    navigate("/hero"); 
+  };
+
+  const handleMobileClick = (e) => {
+    e.preventDefault();
+    playAnimation(); 
+  };
+
   return (
     <a
-      href="#hero"
+      href={isMobile ? undefined : "/hero"}
       className="inline-block w-12 h-12"
-      onMouseEnter={() => {
-        const item = ref.current?.animationItem;
-        if (!item) return;
-        item.setLoop(true);
-        ref.current.playSegments([start, end], true);
-      }}
-      onMouseLeave={() => {
-        const item = ref.current?.animationItem;
-        if (!item) return;
-        item.setLoop(false);
-        item.stop();
-      }}
+      onMouseEnter={!isMobile ? handleDesktopEnter : undefined}
+      onClick={isMobile ? handleMobileClick : handleDesktopClick}
     >
       <style>{`
         .logo-svg [fill], .logo-svg [stroke] {
