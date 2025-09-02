@@ -16,7 +16,6 @@
       (function() {
         try {
           var saved = localStorage.getItem('theme');
-          var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
           var isDark = saved ? saved === 'dark' : systemDark;
           if (isDark) document.documentElement.classList.add('dark');
           else document.documentElement.classList.remove('dark');

@@ -58,9 +58,9 @@ export default function ContactSection() {
 
   return (
     <section className="w-full py-4 px-6 bg-[var(--color-surface)] opacity-85 text-[var(--color-text)]">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-1 lg:gap-24 items-center ">
         {/* LEFT — solo desktop */}
-        <div className="hidden md:flex justify-center md:justify-end" aria-hidden={!isDesktop}>
+        <div className="hidden md:flex justify-center md:justify-end " aria-hidden={!isDesktop}>
           {isDesktop && (
             <LazyLordIcon
               src="https://cdn.lordicon.com/jdgfsfzr.json"

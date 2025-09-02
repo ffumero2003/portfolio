@@ -12,14 +12,14 @@ const RobotViewer = lazy(() => import("../components/hero/robot"));
 export default function Hero() {
   const navigate = useNavigate();
   // Desktop: >= 900 px
-  const isDesktop = useIsDesktop(900);
+  const isDesktop = useIsDesktop(768);
   const [show3D, setShow3D] = useState(false);
 
   // If mobile, redirect after mount (don’t do anything else)
   useEffect(() => {
-    if (!isDesktop) {
+    if (isDesktop === false) {
       // small timeout avoids racing with initial paint/hydration
-      const t = setTimeout(() => navigate("/portfolio", { replace: true }), 0);
+      const t = setTimeout(() => navigate("/portfolio", { replace: true }), 150);
       return () => clearTimeout(t);
     }
   }, [isDesktop, navigate]);
@@ -59,8 +59,8 @@ export default function Hero() {
     };
   }, [isDesktop]);
 
-  // While we’re redirecting on mobile, render a harmless placeholder to keep hooks stable
-  if (!isDesktop) return <div style={{ display: "none" }} />;
+  if (isDesktop === undefined) return null; // espera a medir
+  if (isDesktop === false) return <div style={{ display: "none" }} />;
 
   return (
     <motion.div
@@ -70,7 +70,7 @@ export default function Hero() {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {/* Background 3D */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="fixed inset-0 z-10 overflow-hidden">
         <div className="w-full h-full scale-[1.08] origin-center">
           {show3D && (
             <Suspense fallback={null}>
@@ -81,12 +81,12 @@ export default function Hero() {
       </div>
 
       {/* Text */}
-      <div className="fixed top-12 inset-x-0 z-10 flex justify-center px-4 pointer-events-none">
+      <div className="fixed top-12 inset-x-0  flex justify-center px-4 pointer-events-none">
         <HeroText className="w-11/12" />
       </div>
 
       {/* CTA */}
-      <div className="fixed bottom-16 inset-x-0 z-10 flex justify-center">
+      <div className="fixed bottom-16 inset-x-0 z-20 flex justify-center">
         <HeroButton onClick={() => navigate("/portfolio")} aria="Go to Portfolio" />
       </div>
 

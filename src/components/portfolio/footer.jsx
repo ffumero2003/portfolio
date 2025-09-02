@@ -4,10 +4,10 @@ import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 export default function Footer() {
   return (
     <footer className="bg-transparent text-[var(--color-primary)] py-4">
-      <div className="w-full mx-auto flex items-center justify-between">
+      <div className="w-full mx-auto flex gap-1 md:gap-0 items-center justify-center md:justify-between flex-col md:flex-row">
         
         {/* Left */}
-        <div className="flex gap-4 text-3xl sm:text-4xl">
+        <div className="flex gap-0  text-4xl md:text-5xl">
           <a
             href="https://www.linkedin.com/in/felipe-fumero-b5186030b/"
             target="_blank"
@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
 
         {/*  Right */}
-        <div className="flex gap-3 text-sm sm:text-base md:text-lg">
+        <div className="flex pt-2 md:pt-0 flex-col md:flex-row justify-center items-center gap-3 text-sm sm:text-base md:text-lg">
           <h3>© {new Date().getFullYear()} Felipe Fumero</h3>
           <h3>+(506) 8413-4000</h3>
         </div>

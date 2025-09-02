@@ -35,7 +35,7 @@ export default function HeroText({ text="Welcome to my Portfolio", className=""}
 
   return(
     <h1 ref={textRef}
-      className={`text-4xl md:text-6xl font-thin flex flex-wrap justify-center ${className}`}
+      className={`text-4xl md:text-6xl font-thin flex flex-wrap justify-center ${className} pointer-events-none w-fit`}
       style={{
         willChange: "transform",
         color: "var(--color-text)", 

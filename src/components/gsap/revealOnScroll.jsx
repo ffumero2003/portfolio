@@ -1,13 +1,7 @@
+// gsap/revealOnScroll.jsx
 import { useLayoutEffect, useRef } from "react";
 import { getGSAP } from "../../utils/gsap";
 
-/**
- * RevealOnScroll
- * - Desktop: toggle-based, suave (sin scrub)
- * - Mobile: desactivado por defecto (enableOnMobile=false)
- * - immediateRender:false, invalidateOnRefresh y refresh tras carga de imágenes
- * - Respeta prefers-reduced-motion
- */
 export default function RevealOnScroll({
   children,
   // motion
@@ -20,11 +14,12 @@ export default function RevealOnScroll({
   // trigger
   start = "top 88%",
   end,
-  once = false,                      // si true: play una vez
+  once = false,
   toggleActions = "play none none reverse",
   markers = false,
   // opts
-  enableOnMobile = false,            // ← por defecto DESACTIVADO en mobile
+  enableOnMobile = false,
+  refreshOnLoad = false,       // ⟵ opcional: por defecto no refresca en load/img
   // element
   as: Tag = "div",
   className = "",
@@ -35,9 +30,16 @@ export default function RevealOnScroll({
     const prefersReduced =
       window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
 
-    const { gsap } = getGSAP();
-    // suavecidad global de render
+    const { gsap, ScrollTrigger } = getGSAP();
     gsap.config({ force3D: true });
+
+    let refreshTimer = null;
+    const debouncedRefresh = () => {
+      if (refreshTimer) clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(() => {
+        try { ScrollTrigger?.refresh(true); } catch {}
+      }, 120);
+    };
 
     const ctx = gsap.context(() => {
       const root = el.current;
@@ -45,7 +47,6 @@ export default function RevealOnScroll({
 
       const isMobile = window.matchMedia?.("(max-width: 1023.98px)")?.matches;
 
-      // Si mobile y no queremos animar: pinta visible y listo
       if ((isMobile && !enableOnMobile) || prefersReduced) {
         const targets =
           root.children && root.children.length > 1 ? root.children : root;
@@ -56,12 +57,11 @@ export default function RevealOnScroll({
       const targets =
         root.children && root.children.length > 1 ? root.children : root;
 
-      const fromVars =
-        typeof from === "function" ? from({ y: to?.y ?? 0 }) : from;
+      const fromVars = typeof from === "function" ? from() : from;
 
       gsap.fromTo(
         targets,
-        { ...fromVars, willChange: "transform, opacity" },
+        { ...fromVars, willChange: "transform, opacity, filter" },
         {
           ...to,
           immediateRender: false,
@@ -69,61 +69,47 @@ export default function RevealOnScroll({
           ease,
           delay,
           stagger,
-          clearProps: "willChange",
+          clearProps: "willChange, filter",
           scrollTrigger: {
             trigger: root,
             start,
-            end,
-            scrub: false, // ← sin scrub
+            end: end ?? "+=1", // ⟵ evita rebote inmediato enter/leave
+            scrub: false,
             markers,
             toggleActions: once ? "play none none none" : toggleActions,
             invalidateOnRefresh: true,
+            fastScrollEnd: true,
+            anticipatePin: 0.5,
+            // Fix: desactiva el trigger tras la primera entrada si once=true
+            onEnter(self) { if (once) self.disable(); },
+            onEnterBack(self) { if (once) self.disable(); },
           },
         }
       );
 
-      // Refresh cuando cargan imágenes (evita desfases en mobile/desktop)
-      const imgs = root.querySelectorAll?.("img");
-      imgs?.forEach((img) => {
-        if (img.complete) return;
-        img.addEventListener(
-          "load",
-          () => {
-            try {
-              gsap.core.globals().ScrollTrigger?.refresh(true);
-            } catch {}
-          },
-          { once: true, passive: true }
-        );
-      });
-
-      // Extra: refresh al cargar todo
-      const onLoad = () => {
-        try {
-          gsap.core.globals().ScrollTrigger?.refresh(true);
-        } catch {}
-      };
-      window.addEventListener("load", onLoad, { once: true, passive: true });
+      // Refrescos opcionales (desactivados por defecto)
+      if (refreshOnLoad) {
+        const imgs = root.querySelectorAll?.("img");
+        imgs?.forEach((img) => {
+          if (!img.complete) {
+            img.addEventListener("load", debouncedRefresh, { once: true, passive: true });
+          }
+        });
+        window.addEventListener("load", debouncedRefresh, { once: true, passive: true });
+      }
     }, el);
 
-    return () => ctx.revert();
+    return () => {
+      if (refreshTimer) clearTimeout(refreshTimer);
+      ctx.revert();
+    };
   }, [
-    from,
-    to,
-    duration,
-    ease,
-    delay,
-    stagger,
-    start,
-    end,
-    once,
-    toggleActions,
-    markers,
-    enableOnMobile,
+    from, to, duration, ease, delay, stagger, start, end,
+    once, toggleActions, markers, enableOnMobile, refreshOnLoad,
   ]);
 
   return (
-    <Tag ref={el} className={`will-change-transform ${className}`}>
+    <Tag ref={el} className={`will-change-transform transform-gpu ${className}`}>
       {children}
     </Tag>
   );

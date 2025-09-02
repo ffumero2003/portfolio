@@ -42,22 +42,24 @@ export default function TimelineSection() {
                   aria-hidden
                 />
 
-                <div className={isLeft ? "md:col-start-1 md:pr-8" : "md:col-start-2 md:pl-8"}>
+                <div className={isLeft ? "md:col-start-1 pl-9 md:pl-0 md:pr-8" : "md:col-start-2 pl-9  md:pl-8"}>
                   <RevealOnScroll
-                    enableOnMobile={false}  // ← SIN animación en mobile
-                    from={{ x: fromX, autoAlpha: 0 }}
-                    to={{ x: 0, autoAlpha: 1 }}
-                    duration={0.65}
-                    ease="power2.out"
-                    start={isDesktop ? "top 88%" : "top 92%"}
-                    end="+=80"
-                    once={!isDesktop}
-                    toggleActions={isDesktop ? "play none none reverse" : "play none none none"}
+                    enableOnMobile={true}
+                    from={{ x: fromX > 0 ? 16 : -16, autoAlpha: 0, scale: 0.99, filter: "blur(1.5px)" }}
+                    to={{ x: 0, autoAlpha: 1, scale: 1, filter: "blur(0px)" }}
+                    duration={0.55}
+                    ease="power3.out"
+                    start="top 92%"
+                    once={true}
+                    toggleActions="play none none none"
+                    refreshOnLoad={false}
                   >
+
+
                     <div className="relative group/card transform-gpu">
                       <div
                         className="
-                          relative rounded-md md:rounded-lg p-2.5 md:p-5 border border-outline
+                          relative rounded-md md:rounded-lg p-3 md:p-7 border border-outline
                           transition-shadow duration-300
                           hover:shadow-[0_0_44px_color-mix(in_srgb,_var(--color-primary)_50%,_transparent)]
                           focus-within:shadow-[0_0_20px_color-mix(in_srgb,_var(--color-primary)_40%,_transparent)]

@@ -112,7 +112,6 @@ export default function SkillsInfinite() {
         gap="0.75rem"
         bare
         
-        className="py-1"
         renderItem={renderIconOnly}
         itemKey={(it) => it.alt}
       />
@@ -126,7 +125,6 @@ export default function SkillsInfinite() {
         gap="0.75rem"
         bare
         
-        className="py-1"
         renderItem={renderIconOnly}
         itemKey={(it) => it.alt}
       />
@@ -140,7 +138,6 @@ export default function SkillsInfinite() {
         gap="0.75rem"
         bare
         
-        className="py-2"
         renderItem={renderIconOnly}
         itemKey={(it) => it.alt}
       />

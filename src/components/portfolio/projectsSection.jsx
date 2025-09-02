@@ -15,6 +15,7 @@ import StaticEcommerce from "../../assets/projectImages/staticEcommerce.png";
 import TailwindPort from "../../assets/projectImages/portfolioTailwind.png";
 import Woop from "../../assets/projectImages/woopPracticeReact.png";
 import ToDoList from "../../assets/projectImages/toDoList.png";
+import { scale } from "framer-motion";
 
 const PROJECTS = [
   { imageUrl: UniversidadesImg, title: "Universidades", learning: "Consumo de API, rutas dinámicas con React Router, paginación y tablas con Tailwind.", githubUrl: "https://github.com/ffumero2003/universidades", liveUrl: "https://universidadesporpais.netlify.app/?page=1" },
@@ -63,22 +64,25 @@ export default function ProjectsSection() {
       >
         {PROJECTS.map((p, i) => {
           const hidden = !showAll && i >= PAGE_SIZE;
+
           return (
             <RevealOnScroll
-              key={ids[i]}                 
-              enableOnMobile={false}       
-              duration={0.6}
-              once={!isDesktop}
-              from={{ y: 14, autoAlpha: 0 }}
-              to={{ y: 0, autoAlpha: 1 }}
-              ease="power2.out"
-              start={isDesktop ? "top 90%" : "top 95%"}
-              toggleActions={isDesktop ? "play none none reverse" : "play none none none"}
+              key={ids[i]}
+              enableOnMobile={true}
+              from={{ y: 14, autoAlpha: 0, scale: 0.985, filter: "blur(2px)" }}
+              to={{ y: 0, autoAlpha: 1, scale: 1, filter: "blur(0px)" }}
+              duration={0.55}
+              ease="power3.out"
+              start="top 92%"                 // ⟵ más estable; no rebota en el borde
+              once={true}                     // ⟵ corre 1 vez y el trigger se desactiva
+              toggleActions="play none none none"
+              refreshOnLoad={false}
               className={hidden ? "hidden" : ""}
             >
+
+
+
               <div>
-                {/* If your card supports passing props to the <img>, do this: */}
-                {/* <DirectionAwareHoverCard imgProps={{ loading:'lazy', decoding:'async', draggable:false }} ... /> */}
                 <DirectionAwareHoverCard
                   imageUrl={p.imageUrl}
                   title={p.title}
