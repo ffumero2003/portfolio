@@ -27,19 +27,21 @@ export default function AboutMe() {
       defaults: { ease: "cubic-bezier(0.22,1,0.36,1)" },
     });
 
-    tl.fromTo(maskRect, { attr: { width: 0 } }, { attr: { width: "100%" }, duration: 1.1 })
-      .fromTo(
-        underline,
-        { scaleX: 0, opacity: 0, transformOrigin: "left center" },
-        { scaleX: 1, opacity: 1, duration: 0.45 },
-        0.08
-      )
-      .fromTo(
+    tl
+      .set(maskRect, { attr: { width: 0 } }, 0)
+      .set(underline, { scaleX: 0, opacity: 0, transformOrigin: "left center" }, 0)
+      .set(chars, { y: 16, opacity: 0, rotate: 0.001 }, 0)
+
+      .to(maskRect, { attr: { width: "100%" }, duration: 1.1 }, 0)
+      .to(underline, { scaleX: 1, opacity: 1, duration: 0.45 }, 0.08)
+      .to(
         chars,
-        { y: 16, opacity: 0, rotate: 0.001 },
         { y: 0, opacity: 1, duration: 0.3, stagger: { each: 0.008, from: 0 } },
         0.08
       );
+
+    
+    tl.progress(1);
 
     tlRef.current = tl;
     return () => tl.kill();
@@ -73,7 +75,7 @@ export default function AboutMe() {
             aria-hidden="true"
           >
             <mask id="reveal-mask">
-              <rect x="0" y="0" id="reveal-rect" width="0" height="100%" fill="white" />
+              <rect x="0" y="0" id="reveal-rect" width="100%" height="100%" fill="white" />
             </mask>
             <g mask="url(#reveal-mask)"></g>
           </svg>
@@ -89,8 +91,11 @@ export default function AboutMe() {
 
             <span
               data-role="underline"
-              className="mt-2 block h-[3px] rounded-full opacity-0"
+              className="mt-2 block h-[3px] rounded-full"
               style={{
+                opacity: 1,
+                transform: "scaleX(1)",
+                transformOrigin: "left center",
                 background: `
                   linear-gradient(
                     90deg,
