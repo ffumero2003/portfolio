@@ -51,6 +51,7 @@ export function DirectionAwareHoverCard({
           alt={title ?? "project image"}
           className={cn("h-full w-full object-cover select-none", imageClassName)}
           loading="lazy"
+          decoding="async"
           draggable={false}
         />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 to-transparent" />  

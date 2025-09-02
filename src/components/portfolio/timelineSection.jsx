@@ -31,10 +31,10 @@ export default function TimelineSection() {
         <ol className="space-y-7 md:space-y-10">
           {TIMELINE.map((step, i) => {
             const isLeft = i % 2 === 0;
-            const fromX = isLeft ? -28 : 28; // distancia más corta para suavidad
+            const fromX = isLeft ? -28 : 28;
 
             return (
-              <li key={i} className="relative md:grid md:grid-cols-2">
+              <li key={`${step.title}-${i}`} className="relative md:grid md:grid-cols-2">
                 {/* Punto */}
                 <div
                   className="absolute top-2.5 left-3.5 md:left-1/2 md:-translate-x-1/2 -translate-y-1/2 h-3.5 w-3.5 md:h-4 md:w-4 rounded-full ring-2 ring-[var(--color-outline)]"
@@ -42,20 +42,19 @@ export default function TimelineSection() {
                   aria-hidden
                 />
 
-                <div className={isLeft ? "md:col-start-1 pl-9 md:pl-0 md:pr-8" : "md:col-start-2 pl-9  md:pl-8"}>
+                <div className={isLeft ? "md:col-start-1 pl-9 md:pl-0 md:pr-8" : "md:col-start-2 pl-9 md:pl-8"}>
                   <RevealOnScroll
                     enableOnMobile={true}
-                    from={{ x: fromX > 0 ? 16 : -16, autoAlpha: 0, scale: 0.99, filter: "blur(1.5px)" }}
-                    to={{ x: 0, autoAlpha: 1, scale: 1, filter: "blur(0px)" }}
-                    duration={0.55}
-                    ease="power3.out"
-                    start="top 92%"
-                    once={true}
-                    toggleActions="play none none none"
+                    from={{ x: fromX, autoAlpha: 0 }}
+                    to={{ x: 0, autoAlpha: 1 }}
+                    duration={1}
+                    ease="power2.out"
+                    start="top 65%"
+                    end="+=180"
+                    once={false}
+                    toggleActions="play none restart none"
                     refreshOnLoad={false}
                   >
-
-
                     <div className="relative group/card transform-gpu">
                       <div
                         className="

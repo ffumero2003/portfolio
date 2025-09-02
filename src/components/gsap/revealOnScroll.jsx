@@ -1,115 +1,49 @@
-// gsap/revealOnScroll.jsx
-import { useLayoutEffect, useRef } from "react";
-import { getGSAP } from "../../utils/gsap";
+// components/RevealOnScroll.jsx (versión ultra básica)
+import { useEffect, useRef } from "react";
 
 export default function RevealOnScroll({
   children,
-  // motion
-  from = ({ y = 20 } = {}) => ({ y, autoAlpha: 0 }),
-  to = { y: 0, autoAlpha: 1 },
-  duration = 0.65,
-  ease = "power2.out",
-  delay = 0,
-  stagger = 0,
-  // trigger
-  start = "top 88%",
-  end,
-  once = false,
-  toggleActions = "play none none reverse",
-  markers = false,
-  // opts
-  enableOnMobile = false,
-  refreshOnLoad = false,       // ⟵ opcional: por defecto no refresca en load/img
-  // element
   as: Tag = "div",
   className = "",
+  offset = "0px 0px -10% 0px", // empieza a revelar un poco antes del viewport bottom
+  once = true,
 }) {
-  const el = useRef(null);
+  const ref = useRef(null);
 
-  useLayoutEffect(() => {
-    const prefersReduced =
-      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
 
-    const { gsap, ScrollTrigger } = getGSAP();
-    gsap.config({ force3D: true });
+    // estado inicial: invisible y ligeramente desplazado
+    el.style.opacity = "0";
+    el.style.transform = "translateY(14px)";
+    el.style.willChange = "transform, opacity";
 
-    let refreshTimer = null;
-    const debouncedRefresh = () => {
-      if (refreshTimer) clearTimeout(refreshTimer);
-      refreshTimer = setTimeout(() => {
-        try { ScrollTrigger?.refresh(true); } catch {}
-      }, 120);
-    };
-
-    const ctx = gsap.context(() => {
-      const root = el.current;
-      if (!root) return;
-
-      const isMobile = window.matchMedia?.("(max-width: 1023.98px)")?.matches;
-
-      if ((isMobile && !enableOnMobile) || prefersReduced) {
-        const targets =
-          root.children && root.children.length > 1 ? root.children : root;
-        gsap.set(targets, { clearProps: "all", autoAlpha: 1, x: 0, y: 0 });
-        return;
-      }
-
-      const targets =
-        root.children && root.children.length > 1 ? root.children : root;
-
-      const fromVars = typeof from === "function" ? from() : from;
-
-      gsap.fromTo(
-        targets,
-        { ...fromVars, willChange: "transform, opacity, filter" },
-        {
-          ...to,
-          immediateRender: false,
-          duration,
-          ease,
-          delay,
-          stagger,
-          clearProps: "willChange, filter",
-          scrollTrigger: {
-            trigger: root,
-            start,
-            end: end ?? "+=1", // ⟵ evita rebote inmediato enter/leave
-            scrub: false,
-            markers,
-            toggleActions: once ? "play none none none" : toggleActions,
-            invalidateOnRefresh: true,
-            fastScrollEnd: true,
-            anticipatePin: 0.5,
-            // Fix: desactiva el trigger tras la primera entrada si once=true
-            onEnter(self) { if (once) self.disable(); },
-            onEnterBack(self) { if (once) self.disable(); },
-          },
-        }
-      );
-
-      // Refrescos opcionales (desactivados por defecto)
-      if (refreshOnLoad) {
-        const imgs = root.querySelectorAll?.("img");
-        imgs?.forEach((img) => {
-          if (!img.complete) {
-            img.addEventListener("load", debouncedRefresh, { once: true, passive: true });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // animación CSS con transition; nada de filtros ni scale
+            el.style.transition = "transform 420ms cubic-bezier(.22,.61,.36,1), opacity 420ms";
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            if (once) io.unobserve(el);
+          } else if (!once) {
+            // si no es once, puede revertir al salir
+            el.style.opacity = "0";
+            el.style.transform = "translateY(14px)";
           }
         });
-        window.addEventListener("load", debouncedRefresh, { once: true, passive: true });
-      }
-    }, el);
+      },
+      { root: null, rootMargin: offset, threshold: 0.01 }
+    );
 
-    return () => {
-      if (refreshTimer) clearTimeout(refreshTimer);
-      ctx.revert();
-    };
-  }, [
-    from, to, duration, ease, delay, stagger, start, end,
-    once, toggleActions, markers, enableOnMobile, refreshOnLoad,
-  ]);
+    io.observe(el);
+    return () => io.disconnect();
+  }, [offset, once]);
 
   return (
-    <Tag ref={el} className={`will-change-transform transform-gpu ${className}`}>
+    <Tag ref={ref} className={`transform-gpu ${className}`}>
       {children}
     </Tag>
   );

@@ -15,20 +15,19 @@ import StaticEcommerce from "../../assets/projectImages/staticEcommerce.png";
 import TailwindPort from "../../assets/projectImages/portfolioTailwind.png";
 import Woop from "../../assets/projectImages/woopPracticeReact.png";
 import ToDoList from "../../assets/projectImages/toDoList.png";
-import { scale } from "framer-motion";
 
 const PROJECTS = [
-  { imageUrl: UniversidadesImg, title: "Universidades", learning: "Consumo de API, rutas dinámicas con React Router, paginación y tablas con Tailwind.", githubUrl: "https://github.com/ffumero2003/universidades", liveUrl: "https://universidadesporpais.netlify.app/?page=1" },
-  { imageUrl: AgeCalcApp, title: "Age Calculator App", learning: "Validación de formularios, fechas en JS y @font-face.", githubUrl: "https://github.com/ffumero2003/ageCalcApp/tree/main/age-calculator-app-main", liveUrl: "https://agecalcapplication.netlify.app/" },
-  { imageUrl: WeatherApp, title: "Weather App", learning: "Autocomplete, OpenWeather API y guardado de ciudades.", githubUrl: "https://github.com/ffumero2003/WeatherApp/tree/main/weather-website-portfolio", liveUrl: "https://weatherapp663.netlify.app/" },
-  { imageUrl: BootstrapPort, title: "Bootstrap Portfolio", learning: "Bootstrap 5, AOS, Spline 3D e íconos.", githubUrl: "https://github.com/ffumero2003/bootstrapPortfolio", liveUrl: "https://bootstrapportfolio663.netlify.app/" },
-  { imageUrl: Formulario, title: "Formulario con Validación", learning: "React Hook Form + Zod, Context API, Tailwind.", githubUrl: "https://github.com/ffumero2003/formsPortfolio", liveUrl: "https://formsportfolio.netlify.app/" },
-  { imageUrl: Dashboard, title: "CRM MVP", learning: "React Router, vistas detalle y diseño atómico.", githubUrl: "https://github.com/ffumero2003/CrmMvp", liveUrl: "https://crmmvp663.netlify.app/" },
-  { imageUrl: Laboq, title: "Laboq Practice", learning: "Router multipage, blog posts y 404 con Tailwind.", githubUrl: "https://github.com/ffumero2003/laboqRouter", liveUrl: "https://laboqrouter.netlify.app/" },
-  { imageUrl: StaticEcommerce, title: "Static E-commerce", learning: "Maquetación completa con HTML/CSS.", githubUrl: "https://github.com/ffumero2003/practica-examen-html-css", liveUrl: "https://practicahtmlcssexamen.netlify.app/" },
-  { imageUrl: TailwindPort, title: "Tailwind Portfolio", learning: "Portafolio con HTML + Tailwind.", githubUrl: "https://github.com/ffumero2003/TailwindPortfolio", liveUrl: "https://tailwindportfolio663.netlify.app/" },
-  { imageUrl: Woop, title: "Woop React Component Practice", learning: "Dashboard responsivo y componentes reutilizables.", githubUrl: "https://github.com/ffumero2003/woopReactPractice", liveUrl: "https://woopreactpractice.netlify.app/" },
-  { imageUrl: ToDoList, title: "To Do List", learning: "DOM, validaciones y responsive con CSS.", githubUrl: "https://github.com/ffumero2003/ToDoListApp", liveUrl: "https://todolist663.netlify.app/" },
+  { imageUrl: UniversidadesImg, title: "Universities", learning: "API consumption, dynamic routes with React Router, pagination, and tables with Tailwind.", githubUrl: "https://github.com/ffumero2003/universidades", liveUrl: "https://universidadesporpais.netlify.app/?page=1" },
+  { imageUrl: AgeCalcApp, title: "Age Calculator App", learning: "Form validation, date handling in JS, and @font-face.", githubUrl: "https://github.com/ffumero2003/ageCalcApp/tree/main/age-calculator-app-main", liveUrl: "https://agecalcapplication.netlify.app/" },
+  { imageUrl: WeatherApp, title: "Weather App", learning: "Autocomplete, OpenWeather API, and saving cities.", githubUrl: "https://github.com/ffumero2003/WeatherApp/tree/main/weather-website-portfolio", liveUrl: "https://weatherapp663.netlify.app/" },
+  { imageUrl: BootstrapPort, title: "Bootstrap Portfolio", learning: "Bootstrap 5, AOS, Spline 3D, and icons.", githubUrl: "https://github.com/ffumero2003/bootstrapPortfolio", liveUrl: "https://bootstrapportfolio663.netlify.app/" },
+  { imageUrl: Formulario, title: "Form with Validation", learning: "React Hook Form + Zod, Context API, Tailwind.", githubUrl: "https://github.com/ffumero2003/formsPortfolio", liveUrl: "https://formsportfolio.netlify.app/" },
+  { imageUrl: Dashboard, title: "CRM MVP", learning: "React Router, detail views, and atomic design.", githubUrl: "https://github.com/ffumero2003/CrmMvp", liveUrl: "https://crmmvp663.netlify.app/" },
+  { imageUrl: Laboq, title: "Laboq Practice", learning: "Multipage router, blog posts, and 404 with Tailwind.", githubUrl: "https://github.com/ffumero2003/laboqRouter", liveUrl: "https://laboqrouter.netlify.app/" },
+  { imageUrl: StaticEcommerce, title: "Static E-commerce", learning: "Full layout with HTML/CSS.", githubUrl: "https://github.com/ffumero2003/practica-examen-html-css", liveUrl: "https://practicahtmlcssexamen.netlify.app/" },
+  { imageUrl: TailwindPort, title: "Tailwind Portfolio", learning: "Portfolio with HTML + Tailwind.", githubUrl: "https://github.com/ffumero2003/TailwindPortfolio", liveUrl: "https://tailwindportfolio663.netlify.app/" },
+  { imageUrl: Woop, title: "Woop React Component Practice", learning: "Responsive dashboard and reusable components.", githubUrl: "https://github.com/ffumero2003/woopReactPractice", liveUrl: "https://woopreactpractice.netlify.app/" },
+  { imageUrl: ToDoList, title: "To Do List", learning: "DOM manipulation, validations, and responsive design with CSS.", githubUrl: "https://github.com/ffumero2003/ToDoListApp", liveUrl: "https://todolist663.netlify.app/" },
 ];
 
 const PAGE_SIZE = 6;
@@ -43,10 +42,14 @@ export default function ProjectsSection() {
   const toggleShowAll = () => {
     const next = !showAll;
     setShowAll(next);
+    
     if (!next && gridRef.current) {
       gridRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
+
+  // Solo renderiza los visibles (esto hace que el botón funcione)
+  const VISIBLE = showAll ? PROJECTS : PROJECTS.slice(0, PAGE_SIZE);
 
   return (
     <section className="mx-auto max-w-6xl px-4 md:px-6 py-10 md:py-12">
@@ -62,44 +65,38 @@ export default function ProjectsSection() {
           [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]
           max-w-5xl mx-auto"
       >
-        {PROJECTS.map((p, i) => {
-          const hidden = !showAll && i >= PAGE_SIZE;
-
-          return (
-            <RevealOnScroll
-              key={ids[i]}
-              enableOnMobile={true}
-              from={{ y: 14, autoAlpha: 0, scale: 0.985, filter: "blur(2px)" }}
-              to={{ y: 0, autoAlpha: 1, scale: 1, filter: "blur(0px)" }}
-              duration={0.55}
-              ease="power3.out"
-              start="top 92%"                 // ⟵ más estable; no rebota en el borde
-              once={true}                     // ⟵ corre 1 vez y el trigger se desactiva
-              toggleActions="play none none none"
-              refreshOnLoad={false}
-              className={hidden ? "hidden" : ""}
-            >
-
-
-
-              <div>
-                <DirectionAwareHoverCard
-                  imageUrl={p.imageUrl}
-                  title={p.title}
-                  learning={p.learning}
-                  githubUrl={p.githubUrl}
-                  liveUrl={p.liveUrl}
-                  className="w-full aspect-[4/3] md:aspect-[1/1]"
-                />
-              </div>
-            </RevealOnScroll>
-          );
-        })}
+        {VISIBLE.map((p, i) => (
+          <RevealOnScroll
+            key={p.githubUrl}
+            enableOnMobile={true}
+            from={{ y: 14, autoAlpha: 0, scale: 0.985 }}  
+            to={{ y: 0, autoAlpha: 1, scale: 1 }}
+            duration={0.55}
+            ease="power3.out"
+            start="top 85%"
+            end="+=180"
+            once={false}
+            toggleActions="play none restart none"
+            refreshOnLoad={true}
+          >
+            <DirectionAwareHoverCard
+              imageUrl={p.imageUrl}
+              title={p.title}
+              learning={p.learning}
+              githubUrl={p.githubUrl}
+              liveUrl={p.liveUrl}
+              className="w-full aspect-[4/3] md:aspect-[1/1]"
+            />
+          </RevealOnScroll>
+        ))}
       </div>
 
       {PROJECTS.length > PAGE_SIZE && (
         <div className="mt-6 md:mt-8 flex justify-center">
-          <ButtonPrimary text={showAll ? "Ver Menos" : "Ver más"} onClick={toggleShowAll} />
+          <ButtonPrimary
+            text={showAll ? "See Less" : "See More"}
+            onClick={toggleShowAll}
+          />
         </div>
       )}
     </section>
