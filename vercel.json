@@ -1,7 +1,13 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "redirects": [ 
-    { "source": "http://felipefumero.com/:path*", "destination": "https://felipefumero.com/:path*", "permanent": true }, 
-    { "source": "http://www.felipefumero.com/:path*", "destination": "https://felipefumero.com/:path*", "permanent": true }, 
-    { "source": "https://www.felipefumero.com/:path*", "destination": "https://felipefumero.com/:path*", "permanent": true } ]
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.felipefumero.com" }],
+      "destination": "https://felipefumero.com/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
