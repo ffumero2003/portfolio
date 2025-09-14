@@ -26,6 +26,8 @@ import TypeScript from "../../assets/typescript.png";
 import PageSpeed from "../../assets/pageSpeed.svg";
 import Lighthouse from "../../assets/lighthouse-logo.svg";
 import Vercel from "../../assets/vercel.png"
+import Redux from "../../assets/redux-logo.svg"
+
 
 const SKILLS = [
   { src: Html, alt: "HTML5", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
@@ -52,7 +54,8 @@ const SKILLS = [
   { src: TypeScript, alt: "TypeScript", href: "https://www.typescriptlang.org/" },
   { src: PageSpeed, alt: "PageSpeed", href: "https://pagespeed.web.dev/" },
   { src: Lighthouse, alt: "Lighthouse", href: "https://developer.chrome.com/docs/lighthouse/overview" },
-  { src: Vercel, alt: "Vercel", href: "https://vercel.com/" }
+  { src: Vercel, alt: "Vercel", href: "https://vercel.com/" },
+  { src: Redux, alt: "Redux", href: "https://react-redux.js.org/"}
 ];
 
 export default function SkillsInfinite() {
