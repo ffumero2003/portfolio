@@ -19,10 +19,16 @@ import TipCalculator from "../../assets/projectImages/tipCalculator.png";
 import PasteJson from "../../assets/projectImages/rickAndMortyPasteJson.png";
 import FinanceLogger from "../../assets/projectImages/financeLoggerNetNinja.png";
 import DiscountCalc from "../../assets/projectImages/discountCalculator.png";
-import CalorieCalculator from "../../assets/projectImages/calorieCalculator.png"
+import CalorieCalculator from "../../assets/projectImages/calorieCalculator.png";
+import ToyotaApi from "../../assets/projectImages/toyotaApiPhoto.png";
+import ChampionsLeague from "../../assets/projectImages/playerChampionsLeague.png"; 
 
 
 const PROJECTS = [
+  { imageUrl: ToyotaApi, title: "Toyota Carros", learning: "Atomic Design methodology, component structuring, and data manipulation with Node.js (XLSX to JSON).", githubUrl: "https://github.com/ffumero2003/disenoAtomico/tree/main/card-component", liveUrl: "https://toyotaapi.netlify.app/" },
+
+  { imageUrl: ChampionsLeague, title: "Football Slider", learning: "Implemented Atomic Design for consistent UI structure. Carousel built with TailwindCSS and Framer Motion for smooth animations.", githubUrl: "https://github.com/ffumero2003/disenoAtomico/tree/main/gallery-component", liveUrl: "https://championsleague663.netlify.app/" },
+
   { imageUrl: TipCalculator, title: "Tip Calculator", learning: "Built an interactive form with React, Tailwind and TypeScript, handling state, validations, and conditional rendering to calculate tips with multi-currency support.", githubUrl: "https://github.com/ffumero2003/typescript-practices/tree/main/propinas-calc", liveUrl: "https://propinascalculator663.netlify.app/" },
 
   { imageUrl: PasteJson, title: "Paste Json", learning: "Learned to fetch paginated API data with Promise.all, apply TypeScript types generated from PasteJSON, and display results with responsive TailwindCSS cards.", githubUrl: "https://github.com/ffumero2003/typescript-practices/tree/main/paste-json-typescript", liveUrl: "https://pastejsontypescript.netlify.app/" },
@@ -54,6 +60,8 @@ const PROJECTS = [
   { imageUrl: Woop, title: "Woop React Component Practice", learning: "Responsive dashboard and reusable components.", githubUrl: "https://github.com/ffumero2003/woopReactPractice", liveUrl: "https://woopreactpractice.netlify.app/" },
 
   { imageUrl: ToDoList, title: "To Do List", learning: "DOM manipulation, validations, and responsive design with CSS.", githubUrl: "https://github.com/ffumero2003/ToDoListApp", liveUrl: "https://todolist663.netlify.app/" },
+
+ 
 ];
 
 const PAGE_SIZE = 6;
@@ -74,7 +82,7 @@ export default function ProjectsSection() {
     }
   };
 
-  // Solo renderiza los visibles (esto hace que el botón funcione)
+  
   const VISIBLE = showAll ? PROJECTS : PROJECTS.slice(0, PAGE_SIZE);
 
   return (
