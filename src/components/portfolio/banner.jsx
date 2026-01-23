@@ -11,7 +11,7 @@ export default function Banner() {
     { skills: "Sass",     bg: "bg-pink-200",    text: "text-pink-700" },
     { skills: "Tailwind", bg: "bg-purple-200",  text: "text-purple-700" },
     { skills: "Router",   bg: "bg-slate-200",   text: "text-slate-700" },
-    { skills: "Spline",   bg: "bg-fuchsia-200", text: "text-fuchsia-700" },
+    
   ];
 
   // Detectar dark mode (tu lógica original)
