@@ -27,6 +27,10 @@ import PageSpeed from "../../assets/pageSpeed.svg";
 import Lighthouse from "../../assets/lighthouse-logo.svg";
 import Vercel from "../../assets/vercel.png"
 import Redux from "../../assets/redux-logo.svg"
+import Expo from "../../assets/expo.png"
+import SupabaseLogo from "../../assets/supabase.png";
+import GoogleLogo from "../../assets/google-auth.png";
+import ReactNavLogo from "../../assets/react-nav.png"
 
 
 const SKILLS = [
@@ -55,7 +59,12 @@ const SKILLS = [
   { src: PageSpeed, alt: "PageSpeed", href: "https://pagespeed.web.dev/" },
   { src: Lighthouse, alt: "Lighthouse", href: "https://developer.chrome.com/docs/lighthouse/overview" },
   { src: Vercel, alt: "Vercel", href: "https://vercel.com/" },
-  { src: Redux, alt: "Redux", href: "https://react-redux.js.org/"}
+  { src: Redux, alt: "Redux", href: "https://react-redux.js.org/"},
+  { src: Expo, alt: "Expo", href: "https://expo.dev/"},
+  { src: SupabaseLogo, alt: "Supabase", href: "https://supabase.com/" },
+  { src: GoogleLogo, alt: "Google Sign-In", href: "https://developers.google.com/identity" },
+  { src: ReactNavLogo, alt: "Auth Guards (Navigation)", href: "https://reactnavigation.org/" },
+
 ];
 
 export default function SkillsInfinite() {
