@@ -11,7 +11,7 @@ export default function NotFound() {
           <Lottie animationData={dinosaurError} loop={true} autoplay={true} />
         </div>
         
-        <Link to="/hero" >
+        <Link to="/" >
           <ButtonPrimary text="Go Back Home?" />
         </Link>
       </div>

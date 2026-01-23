@@ -30,7 +30,7 @@ export default function Logo() {
 
   const handleDesktopClick = (e) => {
     e.preventDefault();
-    navigate("/hero"); 
+    navigate("/"); 
   };
 
   const handleMobileClick = (e) => {
@@ -40,7 +40,7 @@ export default function Logo() {
 
   return (
     <a
-      href={isMobile ? undefined : "/hero"}
+      href={isMobile ? undefined : "/"}
       className="inline-block w-12 h-12"
       onMouseEnter={!isMobile ? handleDesktopEnter : undefined}
       onClick={isMobile ? handleMobileClick : handleDesktopClick}
