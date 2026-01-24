@@ -149,7 +149,6 @@ const PROJECTS = [
 const PAGE_SIZE = 6;
 
 export default function ProjectsSection() {
-  const isDesktop = useIsDesktop(900);
   const [showAll, setShowAll] = useState(false);
   const gridRef = useRef(null);
   const [selectedTags, setSelectedTags] = useState([]);

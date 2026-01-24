@@ -30,7 +30,8 @@ import Redux from "../../assets/redux-logo.svg"
 import Expo from "../../assets/expo.png"
 import SupabaseLogo from "../../assets/supabase.png";
 import GoogleLogo from "../../assets/google-auth.png";
-import ReactNavLogo from "../../assets/react-nav.png"
+import ReactNavLogo from "../../assets/react-nav.png";
+import Cursor from "../../assets/cursor-ai.png";
 
 
 const SKILLS = [
@@ -64,7 +65,7 @@ const SKILLS = [
   { src: SupabaseLogo, alt: "Supabase", href: "https://supabase.com/" },
   { src: GoogleLogo, alt: "Google Sign-In", href: "https://developers.google.com/identity" },
   { src: ReactNavLogo, alt: "Auth Guards (Navigation)", href: "https://reactnavigation.org/" },
-
+  { src: Cursor, alt: "Cursor AI", href: "https://www.cursor.com/" },
 ];
 
 export default function SkillsInfinite() {
