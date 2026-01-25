@@ -2,13 +2,16 @@
 import { useRef, useState, useEffect } from "react";
 import { motion } from "motion/react";
 
-function cn(...c){ return c.filter(Boolean).join(" "); }
+function cn(...c) {
+  return c.filter(Boolean).join(" ");
+}
 
 export function DirectionAwareHoverCard({
   imageUrl,
   title,
   learning,
   githubUrl,
+  githubComingSoon,
   liveUrl,
   imageClassName,
   className,
@@ -36,7 +39,13 @@ export function DirectionAwareHoverCard({
       )}
       onMouseEnter={() => isDesktop && setActive(true)}
       onMouseLeave={() => isDesktop && setActive(false)}
-      onClick={() => !isDesktop && setActive(v => !v)}
+      onClick={() => !isDesktop && setActive((v) => !v)}
+      onKeyDown={(e) => {
+        if (!isDesktop && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          setActive((v) => !v);
+        }
+      }}
       role={!isDesktop ? "button" : undefined}
       tabIndex={!isDesktop ? 0 : undefined}
       aria-pressed={!isDesktop ? active : undefined}
@@ -54,8 +63,8 @@ export function DirectionAwareHoverCard({
           decoding="async"
           draggable={false}
         />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 to-transparent" />  
-    </motion.div>
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 to-transparent" />
+      </motion.div>
 
       <div
         className={cn(
@@ -67,7 +76,6 @@ export function DirectionAwareHoverCard({
       <div
         className={cn(
           "absolute inset-x-0 bottom-0 z-20 p-4 md:p-6 transition-opacity duration-300",
-  
           active ? "opacity-100" : "opacity-0",
           "md:opacity-0 md:group-hover/card:opacity-100",
           childrenClassName
@@ -82,6 +90,7 @@ export function DirectionAwareHoverCard({
               {title}
             </h3>
           )}
+
           {learning && (
             <p
               className="text-sm md:text-sm leading-relaxed"
@@ -90,19 +99,26 @@ export function DirectionAwareHoverCard({
               {learning}
             </p>
           )}
+
           <div className="flex flex-wrap gap-2 pt-1">
-            {githubUrl && (
-              <a
-                href={githubUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={buttonClass("outline")}
-                aria-label="Open GitHub repository"
-              >
-                <GithubIcon className="size-4" />
-                <span>GitHub</span>
-              </a>
-            )}
+            {githubUrl &&
+              (githubComingSoon ? (
+                <span className={buttonClass("outline")} aria-label="GitHub coming soon">
+                  <span>Coming Soon</span>
+                </span>
+              ) : (
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={buttonClass("outline")}
+                  aria-label="Open GitHub repository"
+                >
+                  <GithubIcon className="size-4" />
+                  <span>GitHub</span>
+                </a>
+              ))}
+
             {liveUrl && (
               <a
                 href={liveUrl}
@@ -125,7 +141,8 @@ export function DirectionAwareHoverCard({
 function buttonClass(variant = "solid") {
   const base =
     "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs md:text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-colors";
-  if (variant === "outline")
+
+  if (variant === "outline") {
     return cn(
       base,
       "backdrop-blur-[2px]",
@@ -133,9 +150,24 @@ function buttonClass(variant = "solid") {
       "border border-[var(--btn-outline-border)]",
       "text-[var(--overlay-title)] hover:text-[var(--color-primary-dark)]"
     );
-  return cn(base, "bg-[var(--btn-solid-bg)] hover:opacity-90", "text-[var(--btn-solid-text)] ");
+  }
+
+  return cn(base, "bg-[var(--btn-solid-bg)] hover:opacity-90", "text-[var(--btn-solid-text)]");
 }
 
-// Iconos
-function GithubIcon(props){return(<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.08-.74.08-.74 1.21.08 1.85 1.24 1.85 1.24 1.08 1.85 2.84 1.32 3.53 1.01.11-.79.42-1.32.76-1.62-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.31 1.23a11.5 11.5 0 0 1 6.02 0c2.3-1.55 3.31-1.23 3.31-1.23.66 1.64.24 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.62-2.8 5.64-5.48 5.94.43.36.81 1.08.81 2.19v3.25c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z"/></svg>);}
-function ExternalIcon(props){return(<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}><path d="M14 3a1 1 0 1 0 0 2h3.586l-6.293 6.293a1 1 0 0 0 1.414 1.414L19 6.414V10a1 1 0 1 0 2 0V3h-7ZM6 5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-4a1 1 0 1 0-2 0v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4a1 1 0 1 0 0-2H6Z"/></svg>);}
+// Icons
+function GithubIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.35-1.76-1.35-1.76-1.1-.76.08-.74.08-.74 1.21.08 1.85 1.24 1.85 1.24 1.08 1.85 2.84 1.32 3.53 1.01.11-.79.42-1.32.76-1.62-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.31 1.23a11.5 11.5 0 0 1 6.02 0c2.3-1.55 3.31-1.23 3.31-1.23.66 1.64.24 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.62-2.8 5.64-5.48 5.94.43.36.81 1.08.81 2.19v3.25c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z" />
+    </svg>
+  );
+}
+
+function ExternalIcon(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M14 3a1 1 0 1 0 0 2h3.586l-6.293 6.293a1 1 0 0 0 1.414 1.414L19 6.414V10a1 1 0 1 0 2 0V3h-7ZM6 5a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-4a1 1 0 1 0-2 0v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4a1 1 0 1 0 0-2H6Z" />
+    </svg>
+  );
+}

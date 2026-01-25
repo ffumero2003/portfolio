@@ -27,7 +27,7 @@ import ChampionsLeague from "../../assets/projectImages/playerChampionsLeague.pn
 const PROJECTS = [
   { 
   imageUrl: ToyotaApi, 
-  title: "Toyota Carros", 
+  title: "Toyota Cars", 
   learning: "Atomic Design methodology, component structuring, and data manipulation with Node.js (XLSX to JSON).",
   githubUrl: "https://github.com/ffumero2003/disenoAtomico/tree/main/card-component", 
   liveUrl: "https://toyotaapi.netlify.app/", 

@@ -10,6 +10,7 @@ const Banner = lazy(() => import("../components/portfolio/banner"));
 const ProjectsSection = lazy(() => import("../components/portfolio/projectsSection"));
 const ContactSection = lazy(() => import("../components/portfolio/contactSection"));
 const Footer = lazy(() => import("../components/portfolio/footer"));
+const MainProjects = lazy(() => import("../components/portfolio/mainProjects"));
 
 export default function Portfolio() {
   return (
@@ -38,6 +39,10 @@ export default function Portfolio() {
 
       <section id="projects">
         <Suspense fallback={null}><Banner /></Suspense>
+      </section>
+
+      <section className="px-4 py-8">
+        <Suspense fallback={null}><MainProjects /></Suspense>
       </section>
 
       <section className="px-4 py-8">
