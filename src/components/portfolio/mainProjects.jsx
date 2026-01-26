@@ -15,6 +15,7 @@ const MAIN_PROJECTS = [
     learning: "Built a habit-tracking mobile app with React Native and Expo, featuring Zustand for state management, AsyncStorage for persistence, and custom hooks for streak calculations and pattern detection.",
     githubUrl: "https://github.com/ffumero2003/slip",
     liveUrl: "https://slip-landing-dbr7fwtxp-ffumero2003s-projects.vercel.app/",
+    githubComingSoon: false,
   },
   {
     imageUrl: PuffZero,
@@ -22,6 +23,7 @@ const MAIN_PROJECTS = [
     learning: "Building a full-stack mobile app with React Native and Supabase, featuring advanced authentication flows, multi-step onboarding, multi-currency logic, MVVM architecture, and real-time progress tracking with analytics.",
     githubUrl: "https://github.com/ffumero2003/project2",
     liveUrl: "https://puffzero-landing.vercel.app/",
+    githubComingSoon: true,
   },
   {
     imageUrl: Project3,
@@ -29,6 +31,7 @@ const MAIN_PROJECTS = [
     learning: "Description of project 3",
     githubUrl: "https://github.com/ffumero2003/project3",
     liveUrl: "https://project3.netlify.app/",
+    githubComingSoon: false,
   },
   {
     imageUrl: Project4,
@@ -36,6 +39,7 @@ const MAIN_PROJECTS = [
     learning: "Description of project 4",
     githubUrl: "https://github.com/ffumero2003/project4",
     liveUrl: "https://project4.netlify.app/",
+    githubComingSoon: false,
   },
   {
     imageUrl: Project5,
@@ -43,6 +47,7 @@ const MAIN_PROJECTS = [
     learning: "Description of project 5",
     githubUrl: "https://github.com/ffumero2003/project5",
     liveUrl: "https://project5.netlify.app/",
+    githubComingSoon: false,
   },
 ];
 
@@ -62,7 +67,7 @@ export default function MainProjects() {
               title={p.title}
               learning={p.learning}
               githubUrl={p.githubUrl}
-              githubComingSoon={true}
+              githubComingSoon={p.githubComingSoon}
               liveUrl={p.liveUrl}
               className="w-full aspect-[4/3]"
             />
