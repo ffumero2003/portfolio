@@ -12,7 +12,7 @@ export default function AboutMe() {
   const P2 = 
     "I hold a Software Development Technician degree from Cenfotec and I’m currently finishing a degree in Business Administration at LEAD University, which allows me to combine technical skills with a strong understanding of business and product needs.";
   const P2_PRE =
-    "I’m continuously improving my skills with the goal of becoming a full-stack developer, and I actively work on real-world projects to strengthen my technical foundation. All my projects and progress are published on";
+    "I’m continuously improving my skills with the goal of becoming a full-stack developer, and I actively work on real-world projects to strengthen my technical foundation. All my projects and progress are published on ";
   const P2_LINK_TEXT = "https://github.com/ffumero2003";
   const P2_POST = ".";
 
