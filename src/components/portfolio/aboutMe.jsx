@@ -8,9 +8,11 @@ export default function AboutMe() {
 
   const TITLE = "Developer";
   const P1 =
-    "I am a front-end web developer focused on React and modern JavaScript technologies. I specialize in building efficient, modular, and scalable interfaces, paying close attention to both user experience and code quality.";
+    "I’m a developer focused on building modern web and mobile applications using React, JavaScript, and related technologies. I enjoy creating clean, scalable, and user-friendly interfaces, while paying close attention to performance, code structure, and overall user experience.";
+  const P2 = 
+    "I hold a Software Development Technician degree from Cenfotec and I’m currently finishing a degree in Business Administration at LEAD University, which allows me to combine technical skills with a strong understanding of business and product needs.";
   const P2_PRE =
-    "I am curious and self-taught, sharing what I learn through projects and practices. Everything is published on ";
+    "I’m continuously improving my skills with the goal of becoming a full-stack developer, and I actively work on real-world projects to strengthen my technical foundation. All my projects and progress are published on";
   const P2_LINK_TEXT = "https://github.com/ffumero2003";
   const P2_POST = ".";
 
@@ -114,6 +116,14 @@ export default function AboutMe() {
             style={{ color: "var(--color-paragraph)" }}
           >
             {renderChars(P1)}
+          </p>
+
+          <p
+            data-role="p1"
+            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 mb-4 whitespace-pre-wrap break-words"
+            style={{ color: "var(--color-paragraph)" }}
+          >
+            {renderChars(P2)}
           </p>
 
           <p
