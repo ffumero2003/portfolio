@@ -9,7 +9,7 @@ export default function AboutMe() {
   const TITLE = "Developer";
   const P1 =
     "I’m a developer focused on building modern web and mobile applications using React, JavaScript, and related technologies. I enjoy creating clean, scalable, and user-friendly interfaces, while paying close attention to performance, code structure, and overall user experience.";
-  const P2 = 
+  const P2 =
     "I hold a Software Development Technician degree from Cenfotec and I’m currently finishing a degree in Business Administration at LEAD University, which allows me to combine technical skills with a strong understanding of business and product needs.";
   const P2_PRE =
     "I’m continuously improving my skills with the goal of becoming a full-stack developer, and I actively work on real-world projects to strengthen my technical foundation. All my projects and progress are published on ";
@@ -19,65 +19,153 @@ export default function AboutMe() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+  }, []);
 
-    const maskRect = root.querySelector("#reveal-rect");
-    const chars = root.querySelectorAll(".char");
-    const underline = root.querySelector("[data-role='underline']");
+  //   const maskRect = root.querySelector("#reveal-rect");
+  //   const scope = root.querySelector('[data-scope="about-text"]');
+  //   const chars = scope.querySelectorAll(".char");
 
-    const tl = gsap.timeline({
-      paused: true,
-      defaults: { ease: "cubic-bezier(0.22,1,0.36,1)" },
-    });
+  //   const underline = root.querySelector("[data-role='underline']");
 
-    tl
-      .set(maskRect, { attr: { width: 0 } }, 0)
-      .set(underline, { scaleX: 0, opacity: 0, transformOrigin: "left center" }, 0)
-      .set(chars, { y: 16, opacity: 0, rotate: 0.001 }, 0)
+  //   const tl = gsap.timeline({
+  //     paused: true,
+  //     defaults: { ease: "cubic-bezier(0.22,1,0.36,1)" },
+  //   });
 
-      .to(maskRect, { attr: { width: "100%" }, duration: 1.1 }, 0)
-      .to(underline, { scaleX: 1, opacity: 1, duration: 0.45 }, 0.08)
-      .to(
-        chars,
-        { y: 0, opacity: 1, duration: 0.3, stagger: { each: 0.008, from: 0 } },
-        0.08
-      );
+  //   tl.set(maskRect, { attr: { width: 0 } }, 0)
+  //     .set(
+  //       underline,
+  //       { scaleX: 0, opacity: 0, transformOrigin: "left center" },
+  //       0,
+  //     )
+  //     .set(chars, { y: 16, opacity: 0, rotate: 0.001 }, 0)
 
-    
-    tl.progress(1);
+  //     .to(maskRect, { attr: { width: "100%" }, duration: 1.1 }, 0)
+  //     .to(underline, { scaleX: 1, opacity: 1, duration: 0.45 }, 0.08)
+  //     .to(
+  //       chars,
+  //       { y: 0, opacity: 1, duration: 0.3, stagger: { each: 0.008, from: 0 } },
+  //       0.08,
+  //     );
 
-    tlRef.current = tl;
-    return () => tl.kill();
+  //   tl.progress(1);
+
+  //   tlRef.current = tl;
+  //   return () => tl.kill();
+  // }, []);
+
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    // Small delay to ensure React has finished rendering all chars
+    const timeoutId = setTimeout(() => {
+      const maskRect = root.querySelector("#reveal-rect");
+      const scope = root.querySelector('[data-scope="about-text"]');
+      const chars = scope.querySelectorAll(".char");
+
+      const underline = root.querySelector("[data-role='underline']");
+
+      const tl = gsap.timeline({
+        paused: true,
+        defaults: { ease: "cubic-bezier(0.22,1,0.36,1)" },
+      });
+
+      tl.set(maskRect, { attr: { width: 0 } }, 0)
+        .set(
+          underline,
+          { scaleX: 0, opacity: 0, transformOrigin: "left center" },
+          0,
+        )
+        .set(chars, { y: 16, opacity: 0, rotate: 0.001 }, 0)
+
+        .to(maskRect, { attr: { width: "100%" }, duration: 1.1 }, 0)
+        .to(underline, { scaleX: 1, opacity: 1, duration: 0.45 }, 0.08)
+        .to(
+          chars,
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.3,
+            stagger: { each: 0.008, from: 0 },
+          },
+          0.08,
+        );
+
+      tl.progress(1);
+
+      tlRef.current = tl;
+    }, 0);
+
+    return () => {
+      clearTimeout(timeoutId);
+      tlRef.current?.kill();
+    };
   }, []);
 
   const replay = () => tlRef.current?.restart();
 
-  const renderChars = (text) =>
-    [...text].map((ch, i) =>
-      ch === " "
-        ? " "
-        : (
-          <span key={i} className="char inline-block will-change-transform">
-            {ch}
-          </span>
-        )
-    );
+  // const renderChars = (text) =>
+  //   [...text].map((ch, i) =>
+  //     ch === " " ? (
+  //       " "
+  //     ) : (
+  //       <span key={i} className="char inline-block will-change-transform">
+  //         {ch}
+  //       </span>
+  //     ),
+  //   );
+
+  const renderChars = (text) => {
+    // Split into tokens: words + whitespace
+    const tokens = text.split(/(\s+)/);
+
+    return tokens.map((token, wi) => {
+      // keep whitespace as real text so wrapping works naturally
+      if (/^\s+$/.test(token)) return token;
+
+      // wrap each word as a unit so the paragraph can wrap normally
+      return (
+        <span key={wi} className="word inline-block whitespace-pre">
+          {[...token].map((ch, ci) => (
+            <span
+              key={`${wi}-${ci}`}
+              className="char inline-block will-change-transform"
+            >
+              {ch}
+            </span>
+          ))}
+        </span>
+      );
+    });
+  };
 
   return (
     <section
       ref={rootRef}
       className="mx-auto max-w-3xl p-6 md:p-8 rounded-2xl border shadow-md overflow-hidden"
-      style={{ background: "var(--color-surface)", borderColor: "var(--color-outline)" }}
+      style={{
+        background: "var(--color-surface)",
+        borderColor: "var(--color-outline)",
+      }}
       id="about"
     >
       <div className="flex flex-col items-start justify-between gap-4">
-        <div className="relative w-full">
+        <div className="relative w-full" data-scope="about-text">
           <svg
             viewBox="0 0 1200 260"
             className="absolute inset-0 w-full h-full pointer-events-none"
             aria-hidden="true"
           >
             <mask id="reveal-mask">
-              <rect x="0" y="0" id="reveal-rect" width="100%" height="100%" fill="white" />
+              <rect
+                x="0"
+                y="0"
+                id="reveal-rect"
+                width="100%"
+                height="100%"
+                fill="white"
+              />
             </mask>
             <g mask="url(#reveal-mask)"></g>
           </svg>
@@ -85,7 +173,7 @@ export default function AboutMe() {
           <div className="relative mb-4">
             <h2
               data-role="title"
-              className="relative z-10 text-2xl md:text-3xl font-extrabold whitespace-pre-wrap"
+              className="relative z-10 text-2xl md:text-3xl font-extrabold whitespace-normal"
               style={{ color: "var(--color-primary)" }}
             >
               {renderChars(TITLE)}
@@ -112,7 +200,7 @@ export default function AboutMe() {
 
           <p
             data-role="p1"
-            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 mb-4 whitespace-pre-wrap break-words"
+            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 mb-4 whitespace-normal "
             style={{ color: "var(--color-paragraph)" }}
           >
             {renderChars(P1)}
@@ -120,7 +208,7 @@ export default function AboutMe() {
 
           <p
             data-role="p1"
-            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 mb-4 whitespace-pre-wrap break-words"
+            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 mb-4 whitespace-normal"
             style={{ color: "var(--color-paragraph)" }}
           >
             {renderChars(P2)}
@@ -128,7 +216,7 @@ export default function AboutMe() {
 
           <p
             data-role="p2"
-            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 whitespace-pre-wrap break-words"
+            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 whitespace-normal"
             style={{ color: "var(--color-paragraph)" }}
           >
             {renderChars(P2_PRE)}
@@ -149,7 +237,10 @@ export default function AboutMe() {
           type="button"
           onClick={replay}
           className="rounded-lg px-3 py-2 text-sm font-semibold"
-          style={{ background: "var(--color-button)", color: "var(--color-button-text)" }}
+          style={{
+            background: "var(--color-button)",
+            color: "var(--color-button-text)",
+          }}
           text="Animate"
         />
       </div>

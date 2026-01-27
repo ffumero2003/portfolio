@@ -13,6 +13,7 @@ export function DirectionAwareHoverCard({
   githubUrl,
   githubComingSoon,
   liveUrl,
+
   imageClassName,
   className,
   childrenClassName,
@@ -35,7 +36,7 @@ export function DirectionAwareHoverCard({
       className={cn(
         "group/card relative overflow-hidden rounded-2xl bg-transparent",
         "ring-1 ring-[var(--card-ring)] hover:ring-[var(--card-ring-hover)] transition",
-        className
+        className,
       )}
       onMouseEnter={() => isDesktop && setActive(true)}
       onMouseLeave={() => isDesktop && setActive(false)}
@@ -58,7 +59,10 @@ export function DirectionAwareHoverCard({
         <img
           src={imageUrl}
           alt={title ?? "project image"}
-          className={cn("h-full w-full object-cover select-none", imageClassName)}
+          className={cn(
+            "h-full w-full object-cover select-none",
+            imageClassName,
+          )}
           loading="lazy"
           decoding="async"
           draggable={false}
@@ -69,7 +73,7 @@ export function DirectionAwareHoverCard({
       <div
         className={cn(
           "absolute inset-0 z-10 hidden md:block transition-colors duration-200",
-          "group-hover/card:bg-[var(--card-veil)]"
+          "group-hover/card:bg-[var(--card-veil)]",
         )}
       />
 
@@ -78,7 +82,7 @@ export function DirectionAwareHoverCard({
           "absolute inset-x-0 bottom-0 z-20 p-4 md:p-6 transition-opacity duration-300",
           active ? "opacity-100" : "opacity-0",
           "md:opacity-0 md:group-hover/card:opacity-100",
-          childrenClassName
+          childrenClassName,
         )}
       >
         <div className="space-y-2">
@@ -103,7 +107,10 @@ export function DirectionAwareHoverCard({
           <div className="flex flex-wrap gap-2 pt-1">
             {githubUrl &&
               (githubComingSoon ? (
-                <span className={buttonClass("outline")} aria-label="GitHub coming soon">
+                <span
+                  className={buttonClass("outline")}
+                  aria-label="GitHub coming soon"
+                >
                   <span>Coming Soon</span>
                 </span>
               ) : (
@@ -148,11 +155,15 @@ function buttonClass(variant = "solid") {
       "backdrop-blur-[2px]",
       "bg-[var(--btn-outline-bg)] hover:bg-[var(--btn-outline-hover)]",
       "border border-[var(--btn-outline-border)]",
-      "text-[var(--overlay-title)] hover:text-[var(--color-primary-dark)]"
+      "text-[var(--overlay-title)] hover:text-[var(--color-primary-dark)]",
     );
   }
 
-  return cn(base, "bg-[var(--btn-solid-bg)] hover:opacity-90", "text-[var(--btn-solid-text)]");
+  return cn(
+    base,
+    "bg-[var(--btn-solid-bg)] hover:opacity-90",
+    "text-[var(--btn-solid-text)]",
+  );
 }
 
 // Icons

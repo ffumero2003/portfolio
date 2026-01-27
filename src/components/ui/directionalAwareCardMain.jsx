@@ -6,16 +6,18 @@ function cn(...c) {
   return c.filter(Boolean).join(" ");
 }
 
-export function DirectionAwareHoverCardMain({
+export default function DirectionAwareHoverCardMain({
   imageUrl,
   title,
   learning,
   githubUrl,
   githubComingSoon,
   liveUrl,
+  tags,
   imageClassName,
   className,
   childrenClassName,
+  comingSoon = false,
 }) {
   const ref = useRef(null);
   const [active, setActive] = useState(false);
@@ -35,7 +37,7 @@ export function DirectionAwareHoverCardMain({
       className={cn(
         "group/card relative overflow-hidden rounded-2xl bg-transparent",
         "ring-1 ring-[var(--card-ring)] hover:ring-[var(--card-ring-hover)] transition",
-        className
+        className,
       )}
       onMouseEnter={() => isDesktop && setActive(true)}
       onMouseLeave={() => isDesktop && setActive(false)}
@@ -58,7 +60,10 @@ export function DirectionAwareHoverCardMain({
         <img
           src={imageUrl}
           alt={title ?? "project image"}
-          className={cn("h-full w-full object-cover select-none", imageClassName)}
+          className={cn(
+            "h-full w-full object-cover select-none",
+            imageClassName,
+          )}
           loading="lazy"
           decoding="async"
           draggable={false}
@@ -69,70 +74,110 @@ export function DirectionAwareHoverCardMain({
       <div
         className={cn(
           "absolute inset-0 z-10 hidden md:block transition-colors duration-200",
-          "group-hover/card:bg-[var(--card-veil)]"
+          "group-hover/card:bg-[var(--card-veil)]",
         )}
       />
 
       <div
         className={cn(
-          "absolute inset-x-0 bottom-0 z-20 p-4 md:p-6 transition-opacity duration-300",
-          active ? "opacity-100" : "opacity-0",
-          "md:opacity-0 md:group-hover/card:opacity-100",
-          childrenClassName
+          "absolute inset-x-0 bottom-0 z-20 p-4 md:p-6",
+          comingSoon
+            ? cn(
+                "transition-opacity duration-300",
+                active ? "opacity-100" : "opacity-0",
+                "md:opacity-0 md:group-hover/card:opacity-100",
+              )
+            : cn(
+                "transition-opacity duration-300",
+                active ? "opacity-100" : "opacity-0",
+                "md:opacity-0 md:group-hover/card:opacity-100",
+              ),
+          childrenClassName,
         )}
       >
-        <div className="space-y-2">
-          {title && (
-            <h3
-              className="text-lg md:text-xl font-semibold tracking-tight"
-              style={{ color: "var(--overlay-title)" }}
-            >
-              {title}
-            </h3>
-          )}
+        {comingSoon ? (
+          <div className="space-y-2">
+            {title && (
+              <h3
+                className=" text-lg md:text-xl font-semibold tracking-tight"
+                style={{ color: "var(--overlay-title)" }}
+              >
+                {title}
+              </h3>
+            )}
+            <span className="inline-block py-0.5 text-xs font-medium rounded-full bg-black/30 backdrop-blur-sm text-white/90">
+              Coming Soon
+            </span>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {title && (
+              <h3
+                className="px-2 text-lg md:text-xl font-semibold tracking-tight"
+                style={{ color: "var(--overlay-title)" }}
+              >
+                {title}
+              </h3>
+            )}
+            {tags && tags.length > 0 && (
+              <div className="flex flex-wrap gap-1 ">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 text-xs font-medium rounded-full bg-black/30 backdrop-blur-sm text-white/90"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
 
-          {learning && (
-            <p
-              className="text-sm md:text-sm leading-relaxed"
-              style={{ color: "var(--overlay-text)" }}
-            >
-              {learning}
-            </p>
-          )}
+            {learning && (
+              <p
+                className="px-2 text-sm md:text-sm leading-relaxed"
+                style={{ color: "var(--overlay-text)" }}
+              >
+                {learning}
+              </p>
+            )}
 
-          <div className="flex flex-wrap gap-2 pt-1">
-            {githubUrl &&
-              (githubComingSoon ? (
-                <span className={buttonClass("outline")} aria-label="GitHub coming soon">
-                  <span>Coming Soon</span>
-                </span>
-              ) : (
+            <div className="flex flex-wrap gap-2 px-2 pt-1">
+              {githubUrl &&
+                (githubComingSoon ? (
+                  <span
+                    className={buttonClass("outline")}
+                    aria-label="GitHub coming soon"
+                  >
+                    <span>Coming Soon</span>
+                  </span>
+                ) : (
+                  <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={buttonClass("outline")}
+                    aria-label="Open GitHub repository"
+                  >
+                    <GithubIcon className="size-4" />
+                    <span>GitHub</span>
+                  </a>
+                ))}
+
+              {liveUrl && (
                 <a
-                  href={githubUrl}
+                  href={liveUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className={buttonClass("outline")}
-                  aria-label="Open GitHub repository"
+                  className={buttonClass("solid")}
+                  aria-label="Open live site"
                 >
-                  <GithubIcon className="size-4" />
-                  <span>GitHub</span>
+                  <ExternalIcon className="size-4" />
+                  <span>Live</span>
                 </a>
-              ))}
-
-            {liveUrl && (
-              <a
-                href={liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={buttonClass("solid")}
-                aria-label="Open live site"
-              >
-                <ExternalIcon className="size-4" />
-                <span>Live</span>
-              </a>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </motion.div>
   );
@@ -148,11 +193,15 @@ function buttonClass(variant = "solid") {
       "backdrop-blur-[2px]",
       "bg-[var(--btn-outline-bg)] hover:bg-[var(--btn-outline-hover)]",
       "border border-[var(--btn-outline-border)]",
-      "text-[var(--overlay-title)] hover:text-[var(--color-primary-dark)]"
+      "text-[var(--overlay-title)] hover:text-[var(--color-primary-dark)]",
     );
   }
 
-  return cn(base, "bg-[var(--btn-solid-bg)] hover:opacity-90", "text-[var(--btn-solid-text)]");
+  return cn(
+    base,
+    "bg-[var(--btn-solid-bg)] hover:opacity-90",
+    "text-[var(--btn-solid-text)]",
+  );
 }
 
 // Icons

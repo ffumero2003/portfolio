@@ -1,53 +1,58 @@
-import { DirectionAwareHoverCard } from "../ui/directionalAwareCard";
+import DirectionAwareHoverCardMain from "../ui/directionalAwareCardMain";
 import RevealOnScroll from "../gsap/revealOnScroll";
 
 // Import your project images - update these with your actual main project images
 import Slip from "../../assets/mainProjects/slip-image.png";
 import PuffZero from "../../assets/mainProjects/puffzero-image.png";
-import Project3 from "../../assets/projectImages/tipCalculator.png";
-import Project4 from "../../assets/projectImages/universidadesImg.png";
-import Project5 from "../../assets/projectImages/weatherApp.png";
+import UnderConstruction from "../../assets/underConstruction/progress.png";
 
 const MAIN_PROJECTS = [
   {
     imageUrl: Slip,
     title: "Slip",
-    learning: "Built a habit-tracking mobile app with React Native and Expo, featuring Zustand for state management, AsyncStorage for persistence, and custom hooks for streak calculations and pattern detection.",
+    learning:
+      "Habit-tracking mobile app with React Native, Zustand state management, persistent storage, and custom logic for streaks and patterns.",
     githubUrl: "https://github.com/ffumero2003/slip",
     liveUrl: "https://slip-landing-dbr7fwtxp-ffumero2003s-projects.vercel.app/",
     githubComingSoon: false,
+    tags: ["React Native", "Expo", "Zustand", "Product Logic", "TypeScript"],
   },
   {
     imageUrl: PuffZero,
     title: "PuffZero",
-    learning: "Building a full-stack mobile app with React Native and Supabase, featuring advanced authentication flows, multi-step onboarding, multi-currency logic, MVVM architecture, and real-time progress tracking with analytics.",
+    learning:
+      "Building a full-stack mobile app with React Native and Supabase, featuring authentication, onboarding, multi-currency logic, and real-time tracking.",
     githubUrl: "https://github.com/ffumero2003/project2",
     liveUrl: "https://puffzero-landing.vercel.app/",
     githubComingSoon: true,
+    tags: ["React Native", "Expo", "Supabase", "Full-Stack", "TypeScript"],
   },
   {
-    imageUrl: Project3,
-    title: "Project 3",
+    imageUrl: UnderConstruction,
+    title: "Auth Flow",
     learning: "Description of project 3",
     githubUrl: "https://github.com/ffumero2003/project3",
     liveUrl: "https://project3.netlify.app/",
     githubComingSoon: false,
+    comingSoon: true,
   },
   {
-    imageUrl: Project4,
-    title: "Project 4",
+    imageUrl: UnderConstruction,
+    title: "Micro SaaS",
     learning: "Description of project 4",
     githubUrl: "https://github.com/ffumero2003/project4",
     liveUrl: "https://project4.netlify.app/",
     githubComingSoon: false,
+    comingSoon: true,
   },
   {
-    imageUrl: Project5,
-    title: "Project 5",
+    imageUrl: UnderConstruction,
+    title: "Search/Filter System",
     learning: "Description of project 5",
     githubUrl: "https://github.com/ffumero2003/project5",
     liveUrl: "https://project5.netlify.app/",
     githubComingSoon: false,
+    comingSoon: true,
   },
 ];
 
@@ -62,14 +67,16 @@ export default function MainProjects() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
         {MAIN_PROJECTS.slice(0, 3).map((p, i) => (
           <RevealOnScroll key={p.githubUrl}>
-            <DirectionAwareHoverCard
+            <DirectionAwareHoverCardMain
               imageUrl={p.imageUrl}
               title={p.title}
               learning={p.learning}
               githubUrl={p.githubUrl}
               githubComingSoon={p.githubComingSoon}
               liveUrl={p.liveUrl}
+              tags={p.tags}
               className="w-full aspect-[4/3]"
+              comingSoon={p.comingSoon}
             />
           </RevealOnScroll>
         ))}
@@ -79,13 +86,15 @@ export default function MainProjects() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
         {MAIN_PROJECTS.slice(3, 5).map((p, i) => (
           <RevealOnScroll key={p.githubUrl}>
-            <DirectionAwareHoverCard
+            <DirectionAwareHoverCardMain
               imageUrl={p.imageUrl}
               title={p.title}
               learning={p.learning}
               githubUrl={p.githubUrl}
               liveUrl={p.liveUrl}
+              tags={p.tags}
               className="w-full aspect-[4/3]"
+              comingSoon={p.comingSoon}
             />
           </RevealOnScroll>
         ))}
