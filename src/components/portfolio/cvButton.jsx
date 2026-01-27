@@ -1,9 +1,9 @@
-import ButtonPrimary from "./buttonPrimary"
+import ButtonPrimary from "./buttonPrimary";
 
-export default function CvButton(){
+export default function CvButton() {
   return (
-    <a href="/Resume.pdf" download="Curriculum-FelipeFumero.pdf">
+    <a href="/Resume_2026.pdf" download="Curriculum-FelipeFumero.pdf">
       <ButtonPrimary text="Resume" />
     </a>
-  )
+  );
 }
