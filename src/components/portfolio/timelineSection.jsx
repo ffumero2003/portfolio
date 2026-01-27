@@ -5,7 +5,7 @@ const TIMELINE = [
   {
     title: "Currently",
     date: "NOW 2026",
-    desc: "Studying Business Administration at Lead University (grad. Jan 2026) while managing projects and preparing for first dev job.",
+    desc: "Studying Business Administration at Lead University (grad. June 2026) while managing projects and preparing for first dev job.",
   },
   {
     title: "Took Action",
