@@ -4,6 +4,7 @@ import RevealOnScroll from "../gsap/revealOnScroll";
 // Import your project images - update these with your actual main project images
 import Slip from "../../assets/mainProjects/slip-image.png";
 import PuffZero from "../../assets/mainProjects/puffzero-image.png";
+import AuthFlow from "../../assets/mainProjects/auth-flow.png";
 import UnderConstruction from "../../assets/underConstruction/progress.png";
 
 const MAIN_PROJECTS = [
@@ -28,13 +29,15 @@ const MAIN_PROJECTS = [
     tags: ["React Native", "Expo", "Supabase", "Full-Stack", "TypeScript"],
   },
   {
-    imageUrl: UnderConstruction,
+    imageUrl: AuthFlow,
     title: "Auth Flow",
-    learning: "Description of project 3",
-    githubUrl: "https://github.com/ffumero2003/project3",
-    liveUrl: "https://project3.netlify.app/",
+    learning:
+      "Built a full-stack authentication system using React, Node.js, Zod, and PostgreSQL. Using Vercel for deployment and Render for the backend.",
+    githubUrl: "https://github.com/ffumero2003/auth-flow",
+    liveUrl: "https://auth-flow-kappa.vercel.app",
     githubComingSoon: false,
-    comingSoon: true,
+    comingSoon: false,
+    tags: ["React", "Node.js", "PostgreSQL", "Tailwind CSS", "Full-Stack"],
   },
   {
     imageUrl: UnderConstruction,
