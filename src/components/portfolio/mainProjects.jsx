@@ -5,6 +5,7 @@ import RevealOnScroll from "../gsap/revealOnScroll";
 import Slip from "../../assets/mainProjects/slip-image.png";
 import PuffZero from "../../assets/mainProjects/puffzero-image.png";
 import AuthFlow from "../../assets/mainProjects/auth-flow.png";
+import JobFlow from "../../assets/mainProjects/job-flow.png";
 import UnderConstruction from "../../assets/underConstruction/progress.png";
 
 const MAIN_PROJECTS = [
@@ -40,14 +41,24 @@ const MAIN_PROJECTS = [
     tags: ["React", "Node.js", "PostgreSQL", "Tailwind CSS", "Full-Stack"],
   },
   {
-    imageUrl: UnderConstruction,
-    title: "Micro SaaS",
-    learning: "Description of project 4",
-    githubUrl: "https://github.com/ffumero2003/project4",
-    liveUrl: "https://project4.netlify.app/",
+    imageUrl: JobFlow,
+    title: "JobFlow (Micro SaaS)",
+    learning:
+      "Micro SaaS job-application CRM with kanban pipeline, filters/search, analytics, and local-first persistence (localStorage). Designed to scale to a real backend (auth + Postgres/Supabase) for multi-device sync.",
+    githubUrl: "https://github.com/ffumero2003/job-flow",
+    liveUrl: "https://job-flow-navy.vercel.app/",
     githubComingSoon: false,
-    comingSoon: true,
+    comingSoon: false,
+    tags: [
+      "React",
+      "State Management",
+      "LocalStorage",
+      "Dashboard",
+      "Micro SaaS",
+      "Tailwind",
+    ],
   },
+
   {
     imageUrl: UnderConstruction,
     title: "Search/Filter System",
