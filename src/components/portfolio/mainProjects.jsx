@@ -6,6 +6,7 @@ import Slip from "../../assets/mainProjects/slip-image.png";
 import PuffZero from "../../assets/mainProjects/puffzero-image.png";
 import AuthFlow from "../../assets/mainProjects/auth-flow.png";
 import JobFlow from "../../assets/mainProjects/job-flow.png";
+import SearchFilterSystem from "../../assets/mainProjects/search-system.png";
 import UnderConstruction from "../../assets/underConstruction/progress.png";
 
 const MAIN_PROJECTS = [
@@ -60,13 +61,22 @@ const MAIN_PROJECTS = [
   },
 
   {
-    imageUrl: UnderConstruction,
+    imageUrl: SearchFilterSystem,
     title: "Search/Filter System",
-    learning: "Description of project 5",
-    githubUrl: "https://github.com/ffumero2003/project5",
-    liveUrl: "https://project5.netlify.app/",
+    learning:
+      "Built a book discovery dashboard with React, integrating the OpenLibrary API. Features debounced search, dynamic filtering (year, author, subjects), sorting, reading list with localStorage persistence, and search history tracking.",
+    githubUrl: "https://github.com/ffumero2003/search-system",
+    liveUrl: "https://search-system-pi.vercel.app/",
     githubComingSoon: false,
-    comingSoon: true,
+    comingSoon: false,
+    tags: [
+      "React",
+      "API Integration",
+      "Context API",
+      "Custom Hooks",
+      "Tailwind CSS",
+      "LocalStorage",
+    ],
   },
 ];
 
