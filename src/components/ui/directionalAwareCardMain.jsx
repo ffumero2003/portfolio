@@ -80,7 +80,8 @@ export default function DirectionAwareHoverCardMain({
 
       <div
         className={cn(
-          "absolute inset-x-0 bottom-0 z-20 p-4 md:p-6",
+          "absolute inset-x-0 bottom-0 z-20 p-3 md:p-6",
+
           comingSoon
             ? cn(
                 "transition-opacity duration-300",
@@ -113,18 +114,18 @@ export default function DirectionAwareHoverCardMain({
           <div className="space-y-2">
             {title && (
               <h3
-                className="px-2 text-lg md:text-xl font-semibold tracking-tight"
+                className="px-2 text-base md:text-xl font-semibold tracking-tight"
                 style={{ color: "var(--overlay-title)" }}
               >
                 {title}
               </h3>
             )}
             {tags && tags.length > 0 && (
-              <div className="flex flex-wrap gap-1 ">
+              <div className="flex flex-wrap gap-1 max-h-12 md:max-h-none overflow-hidden">
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 text-xs font-medium rounded-full bg-black/30 backdrop-blur-sm text-white/90"
+                    className="px-1.5 md:px-2 py-0.5 text-[10px] md:text-xs font-medium rounded-full bg-black/30 backdrop-blur-sm text-white/90"
                   >
                     {tag}
                   </span>
@@ -134,7 +135,7 @@ export default function DirectionAwareHoverCardMain({
 
             {learning && (
               <p
-                className="px-2 text-sm md:text-sm leading-relaxed"
+                className="px-2 text-xs md:text-sm leading-relaxed line-clamp-3 md:line-clamp-none"
                 style={{ color: "var(--overlay-text)" }}
               >
                 {learning}

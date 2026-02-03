@@ -14,7 +14,8 @@ const MAIN_PROJECTS = [
     imageUrl: Slip,
     title: "Slip",
     learning:
-      "Habit-tracking mobile app with React Native, Zustand state management, persistent storage, and custom logic for streaks and patterns.",
+      "Habit-tracking mobile app with Zustand, persistent storage, and custom streak logic.",
+
     githubUrl: "https://github.com/ffumero2003/slip",
     liveUrl: "https://slip-landing-dbr7fwtxp-ffumero2003s-projects.vercel.app/",
     githubComingSoon: false,
@@ -24,7 +25,8 @@ const MAIN_PROJECTS = [
     imageUrl: PuffZero,
     title: "PuffZero",
     learning:
-      "Building a full-stack mobile app with React Native and Supabase, featuring authentication, onboarding, multi-currency logic, and real-time tracking.",
+      "Full-stack mobile app with Supabase auth, onboarding, multi-currency, and real-time tracking.",
+
     githubUrl: "https://github.com/ffumero2003/project2",
     liveUrl: "https://puffzero-landing.vercel.app/",
     githubComingSoon: true,
@@ -34,7 +36,8 @@ const MAIN_PROJECTS = [
     imageUrl: AuthFlow,
     title: "Auth Flow",
     learning:
-      "Built a full-stack authentication system using React, Node.js, Zod, and PostgreSQL. Using Vercel for deployment and Render for the backend.",
+      "Full-stack auth system with React, Node.js, Zod, and PostgreSQL.",
+
     githubUrl: "https://github.com/ffumero2003/auth-flow",
     liveUrl: "https://auth-flow-kappa.vercel.app",
     githubComingSoon: false,
@@ -45,7 +48,8 @@ const MAIN_PROJECTS = [
     imageUrl: JobFlow,
     title: "JobFlow (Micro SaaS)",
     learning:
-      "Micro SaaS job-application CRM with kanban pipeline, filters/search, analytics, and local-first persistence (localStorage). Designed to scale to a real backend (auth + Postgres/Supabase) for multi-device sync.",
+      "Job-application CRM with kanban, filters, analytics, and local-first persistence.",
+
     githubUrl: "https://github.com/ffumero2003/job-flow",
     liveUrl: "https://job-flow-navy.vercel.app/",
     githubComingSoon: false,
@@ -64,7 +68,8 @@ const MAIN_PROJECTS = [
     imageUrl: SearchFilterSystem,
     title: "Search/Filter System",
     learning:
-      "Built a book discovery dashboard with React, integrating the OpenLibrary API. Features debounced search, dynamic filtering (year, author, subjects), sorting, reading list with localStorage persistence, and search history tracking.",
+      "Book discovery dashboard with OpenLibrary API, debounced search, dynamic filters, and localStorage persistence.",
+
     githubUrl: "https://github.com/ffumero2003/search-system",
     liveUrl: "https://search-system-pi.vercel.app/",
     githubComingSoon: false,
@@ -88,7 +93,7 @@ export default function MainProjects() {
       </h2>
 
       {/* Top row - 3 projects */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 mb-4 lg:mb-6">
         {MAIN_PROJECTS.slice(0, 3).map((p, i) => (
           <RevealOnScroll key={p.githubUrl}>
             <DirectionAwareHoverCardMain
@@ -107,7 +112,7 @@ export default function MainProjects() {
       </div>
 
       {/* Bottom row - 2 projects centered */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 max-w-4xl mx-auto">
         {MAIN_PROJECTS.slice(3, 5).map((p, i) => (
           <RevealOnScroll key={p.githubUrl}>
             <DirectionAwareHoverCardMain
