@@ -8,11 +8,11 @@ export default function AboutMe() {
 
   const TITLE = "Developer";
   const P1 =
-    "I’m a developer focused on building modern web and mobile applications using React, JavaScript, and related technologies. I enjoy creating clean, scalable, and user-friendly interfaces, while paying close attention to performance, code structure, and overall user experience.";
+    "I'm a developer focused on building modern web and mobile applications using React, React Native, TypeScript, and JavaScript. I enjoy creating clean, scalable, and user-friendly interfaces while leveraging AI-assisted development tools (Claude, Cursor, ChatGPT, Copilot) to optimize my workflow and code quality.";
   const P2 =
-    "I hold a Software Development Technician degree from Cenfotec and I’m currently finishing a degree in Business Administration at LEAD University, which allows me to combine technical skills with a strong understanding of business and product needs.";
+    "I hold a Software Development Technician degree from Cenfotec and I'm currently finishing a degree in Business Administration at LEAD University (I finish in May-June). This combination allows me to approach development with both technical expertise and a strong understanding of business strategy and product needs.";
   const P2_PRE =
-    "I’m continuously improving my skills with the goal of becoming a full-stack developer, and I actively work on real-world projects to strengthen my technical foundation. All my projects and progress are published on ";
+    "I’m continuously working toward becoming a full-stack developer, building real-world projects that strengthen my technical foundation in front-end, back-end, authentication systems, and scalable architectures. You can see all my projects and progress on ";
   const P2_LINK_TEXT = "https://github.com/ffumero2003";
   const P2_POST = ".";
 
@@ -183,9 +183,9 @@ export default function AboutMe() {
               data-role="underline"
               className="mt-2 block h-[3px] rounded-full"
               style={{
-                opacity: 1,
-                transform: "scaleX(1)",
-                transformOrigin: "left center",
+                // opacity: 1,
+                // transform: "scaleX(1)",
+                // transformOrigin: "left center",
                 background: `
                   linear-gradient(
                     90deg,
