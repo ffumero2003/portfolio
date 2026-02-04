@@ -7,11 +7,10 @@ export default function Banner() {
   const [isDesktop, setIsDesktop] = useState(true); // ← detectar viewport
 
   const usage = [
-    { skills: "React",    bg: "bg-blue-200",    text: "text-blue-700" },
-    { skills: "Sass",     bg: "bg-pink-200",    text: "text-pink-700" },
-    { skills: "Tailwind", bg: "bg-purple-200",  text: "text-purple-700" },
-    { skills: "Router",   bg: "bg-slate-200",   text: "text-slate-700" },
-    
+    { skills: "React", bg: "bg-blue-200", text: "text-blue-700" },
+    { skills: "Sass", bg: "bg-pink-200", text: "text-pink-700" },
+    { skills: "Tailwind", bg: "bg-purple-200", text: "text-purple-700" },
+    { skills: "Router", bg: "bg-slate-200", text: "text-slate-700" },
   ];
 
   // Detectar dark mode (tu lógica original)
@@ -23,7 +22,6 @@ export default function Banner() {
     return () => observer.disconnect();
   }, []);
 
- 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const onChange = (e) => setIsDesktop(e.matches);
@@ -67,7 +65,7 @@ export default function Banner() {
 
               <div className="mt-6 flex justify-center items-center md:justify-start md:items-start">
                 <a
-                  href="https://github.com/ffumero2003/portfolioOfficial"
+                  href="https://github.com/ffumero2003/portfolio"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -79,7 +77,10 @@ export default function Banner() {
         </div>
 
         {/* RIGHT — solo desktop */}
-        <div className="hidden md:flex justify-center md:justify-start" aria-hidden={!isDesktop}>
+        <div
+          className="hidden md:flex justify-center md:justify-start"
+          aria-hidden={!isDesktop}
+        >
           {isDesktop && (
             <LazyLordIcon
               src="https://cdn.lordicon.com/jectmwqf.json"
