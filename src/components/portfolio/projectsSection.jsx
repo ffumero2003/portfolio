@@ -27,7 +27,7 @@ const PROJECTS = [
     githubUrl:
       "https://github.com/ffumero2003/disenoAtomico/tree/main/card-component",
     liveUrl: "https://toyotaapi.netlify.app/",
-    tags: ["React", "Tailwind", "Node", "Javascript"],
+    tags: ["React", "Tailwind", "Node.js", "JavaScript"],
   },
 
   {
@@ -38,7 +38,7 @@ const PROJECTS = [
     githubUrl:
       "https://github.com/ffumero2003/disenoAtomico/tree/main/gallery-component",
     liveUrl: "https://championsleague663.netlify.app/",
-    tags: ["React", "Tailwind", "Framer Motion", "Responsive Design"],
+    tags: ["React", "Tailwind", "Responsive Design"],
   },
 
   {
@@ -113,7 +113,7 @@ const PROJECTS = [
     githubUrl:
       "https://github.com/ffumero2003/ageCalcApp/tree/main/age-calculator-app-main",
     liveUrl: "https://agecalcapplication.netlify.app/",
-    tags: ["Css", "Javascript", "Responsive Design"],
+    tags: ["Css", "JavaScript", "Responsive Design"],
   },
 
   {
@@ -123,7 +123,7 @@ const PROJECTS = [
     githubUrl:
       "https://github.com/ffumero2003/WeatherApp/tree/main/weather-website-portfolio",
     liveUrl: "https://weatherapp663.netlify.app/",
-    tags: ["React", "Css", "Javascript"],
+    tags: ["React", "Css", "JavaScript"],
   },
 
   {
@@ -150,7 +150,7 @@ const PROJECTS = [
     learning: "DOM manipulation, validations, and responsive design with CSS.",
     githubUrl: "https://github.com/ffumero2003/ToDoListApp",
     liveUrl: "https://todolist663.netlify.app/",
-    tags: ["Css", "Javascript", "Responsive Design"],
+    tags: ["Css", "JavaScript", "Responsive Design"],
   },
 ];
 
@@ -169,7 +169,7 @@ export default function ProjectsSection() {
 
   const toggleTag = (tag) => {
     setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
@@ -186,7 +186,7 @@ export default function ProjectsSection() {
     selectedTags.length === 0
       ? PROJECTS
       : PROJECTS.filter((p) =>
-          selectedTags.some((tag) => p.tags?.includes(tag)),
+          selectedTags.some((tag) => p.tags?.includes(tag))
         );
 
   const VISIBLE = showAll ? FILTERED : FILTERED.slice(0, PAGE_SIZE);
@@ -197,7 +197,7 @@ export default function ProjectsSection() {
         Other Projects/Practices
       </h2>
 
-      <div className="flex flex-wrap gap-2 mb-6 md:mb-8 bg-surface border border-color-outline border-[var(--color-outline)] rounded-3xl p-4">
+      <div className="flex flex-wrap gap-1 mb-6 md:mb-8 bg-surface border border-color-outline border-[var(--color-outline)] rounded-3xl p-4">
         <button
           onClick={() => setSelectedTags([])}
           className={`px-3 py-1.5 rounded-full text-sm md:text-md transition-colors ${
@@ -212,7 +212,7 @@ export default function ProjectsSection() {
           <button
             key={tag}
             onClick={() => toggleTag(tag)}
-            className={`px-3 py-1.5 rounded-full text-sm md:text-md transition-colors ${
+            className={`px-2 py-1.5 rounded-full text-sm md:text-md transition-colors ${
               selectedTags.includes(tag)
                 ? "bg-[var(--color-primary)] text-white font-bold"
                 : "bg-[var(--color-bg-secondary)] text-[var(--color-text)] hover:bg-[var(--color-primary-hover)]"
