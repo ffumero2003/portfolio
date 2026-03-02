@@ -8,11 +8,9 @@ export default function AboutMe() {
 
   const TITLE = "Developer";
   const P1 =
-    "I'm a developer focused on building modern web and mobile applications using React, React Native, TypeScript, and JavaScript. I enjoy creating clean, scalable, and user-friendly interfaces while leveraging AI-assisted development tools (Claude, Cursor, ChatGPT, Copilot) to optimize my workflow and code quality.";
-  const P2 =
-    "I hold a Software Development Technician degree from Cenfotec and I'm currently finishing a degree in Business Administration at LEAD University (I finish in May-June). This combination allows me to approach development with both technical expertise and a strong understanding of business strategy and product needs.";
+    "I’m a developer focused on building modern web and mobile applications with React, React Native, TypeScript, and JavaScript—creating clean, scalable, user-friendly interfaces while leveraging AI-assisted tools (Claude, Cursor, ChatGPT, Copilot) to optimize workflow and code quality. I hold a Software Development Technician degree from Cenfotec and I’m finishing a Business Administration degree at LEAD University (May-June), combining technical expertise with business strategy.";
   const P2_PRE =
-    "I’m continuously working toward becoming a full-stack developer, building real-world projects that strengthen my technical foundation in front-end, back-end, authentication systems, and scalable architectures. You can see all my projects and progress on ";
+    "I’m working toward becoming a full-stack developer, building real-world projects across front-end, back-end, auth systems, and scalable architectures. See my projects and progress on ";
   const P2_LINK_TEXT = "https://github.com/ffumero2003";
   const P2_POST = ".";
 
@@ -204,14 +202,6 @@ export default function AboutMe() {
             style={{ color: "var(--color-paragraph)" }}
           >
             {renderChars(P1)}
-          </p>
-
-          <p
-            data-role="p1"
-            className="relative z-10 text-base md:text-lg leading-7 md:leading-8 mb-4 whitespace-normal"
-            style={{ color: "var(--color-paragraph)" }}
-          >
-            {renderChars(P2)}
           </p>
 
           <p
