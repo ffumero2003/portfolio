@@ -2,10 +2,11 @@ import RevealOnScroll from "../gsap/revealOnScroll";
 import useIsDesktop from "../hooks/isDesktop";
 
 const TIMELINE = [
+  // replace the "Currently" entry
   {
-    title: "Currently",
+    title: "Data Engineer",
     date: "NOW 2026",
-    desc: "Studying Business Administration at Lead University (grad. June 2026) while managing projects and preparing for first dev job.",
+    desc: "Junior Data Engineer at CriticalRiver — building pipelines with Airflow, dbt, BigQuery, and Snowflake. Completing a BBA at LEAD University (grad. Aug 2026).",
   },
   {
     title: "Took Action",

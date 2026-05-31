@@ -25,19 +25,42 @@ import Vite from "../../assets/vite.png";
 import TypeScript from "../../assets/typescript.png";
 import PageSpeed from "../../assets/pageSpeed.svg";
 import Lighthouse from "../../assets/lighthouse-logo.svg";
-import Vercel from "../../assets/vercel.png"
-import Redux from "../../assets/redux-logo.svg"
-import Expo from "../../assets/expo.png"
+import Vercel from "../../assets/vercel.png";
+import Redux from "../../assets/redux-logo.svg";
+import Expo from "../../assets/expo.png";
 import SupabaseLogo from "../../assets/supabase.png";
 import GoogleLogo from "../../assets/google-auth.png";
 import ReactNavLogo from "../../assets/react-nav.png";
 import Cursor from "../../assets/cursor-ai.png";
-
+import BigQuery from "../../assets/BigQuery.png";
+import Dbt from "../../assets/dbt.png";
+import Airflow from "../../assets/airflow.png";
+import Snowflake from "../../assets/snowflake.png";
+import Postgres from "../../assets/postgres.png";
+import Docker from "../../assets/docker.png";
 
 const SKILLS = [
-  { src: Html, alt: "HTML5", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
-  { src: Css, alt: "CSS3", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
-  { src: Js, alt: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+  { src: BigQuery, alt: "BigQuery", href: "https://cloud.google.com/bigquery" },
+  { src: Dbt, alt: "dbt", href: "https://www.getdbt.com/" },
+  { src: Airflow, alt: "Apache Airflow", href: "https://airflow.apache.org/" },
+  { src: Snowflake, alt: "Snowflake", href: "https://www.snowflake.com/" },
+  { src: Postgres, alt: "PostgreSQL", href: "https://www.postgresql.org/" },
+  { src: Docker, alt: "Docker", href: "https://www.docker.com/" },
+  {
+    src: Html,
+    alt: "HTML5",
+    href: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+  },
+  {
+    src: Css,
+    alt: "CSS3",
+    href: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+  },
+  {
+    src: Js,
+    alt: "JavaScript",
+    href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+  },
   { src: Python, alt: "Python", href: "https://www.python.org/" },
   { src: Jquery, alt: "jQuery", href: "https://jquery.com/" },
   { src: Bootstrap, alt: "Bootstrap", href: "https://getbootstrap.com/" },
@@ -47,24 +70,48 @@ const SKILLS = [
   { src: VsCode, alt: "VS Code", href: "https://code.visualstudio.com/" },
   { src: Figma, alt: "Figma", href: "https://www.figma.com/" },
   { src: ChatGpt, alt: "ChatGPT / OpenAI", href: "https://openai.com/chatgpt" },
-  { src: FramerMotionLogo, alt: "Framer Motion", href: "https://www.framer.com/motion/" },
+  {
+    src: FramerMotionLogo,
+    alt: "Framer Motion",
+    href: "https://www.framer.com/motion/",
+  },
   { src: Gsap, alt: "GSAP", href: "https://greensock.com/gsap/" },
   { src: ReactLogo, alt: "React", href: "https://react.dev/" },
   { src: Tailwind, alt: "Tailwind CSS", href: "https://tailwindcss.com/" },
   { src: Netlify, alt: "Netlify", href: "https://www.netlify.com/" },
   { src: Sass, alt: "Sass", href: "https://sass-lang.com/" },
-  { src: JsonServer, alt: "JSON Server", href: "https://www.npmjs.com/package/json-server" },
+  {
+    src: JsonServer,
+    alt: "JSON Server",
+    href: "https://www.npmjs.com/package/json-server",
+  },
   { src: Postman, alt: "Postman", href: "https://www.postman.com/" },
   { src: Vite, alt: "Vite", href: "https://vite.dev/" },
-  { src: TypeScript, alt: "TypeScript", href: "https://www.typescriptlang.org/" },
+  {
+    src: TypeScript,
+    alt: "TypeScript",
+    href: "https://www.typescriptlang.org/",
+  },
   { src: PageSpeed, alt: "PageSpeed", href: "https://pagespeed.web.dev/" },
-  { src: Lighthouse, alt: "Lighthouse", href: "https://developer.chrome.com/docs/lighthouse/overview" },
+  {
+    src: Lighthouse,
+    alt: "Lighthouse",
+    href: "https://developer.chrome.com/docs/lighthouse/overview",
+  },
   { src: Vercel, alt: "Vercel", href: "https://vercel.com/" },
-  { src: Redux, alt: "Redux", href: "https://react-redux.js.org/"},
-  { src: Expo, alt: "Expo", href: "https://expo.dev/"},
+  { src: Redux, alt: "Redux", href: "https://react-redux.js.org/" },
+  { src: Expo, alt: "Expo", href: "https://expo.dev/" },
   { src: SupabaseLogo, alt: "Supabase", href: "https://supabase.com/" },
-  { src: GoogleLogo, alt: "Google Sign-In", href: "https://developers.google.com/identity" },
-  { src: ReactNavLogo, alt: "Auth Guards (Navigation)", href: "https://reactnavigation.org/" },
+  {
+    src: GoogleLogo,
+    alt: "Google Sign-In",
+    href: "https://developers.google.com/identity",
+  },
+  {
+    src: ReactNavLogo,
+    alt: "Auth Guards (Navigation)",
+    href: "https://reactnavigation.org/",
+  },
   { src: Cursor, alt: "Cursor AI", href: "https://www.cursor.com/" },
 ];
 
@@ -111,8 +158,14 @@ export default function SkillsInfinite() {
   );
 
   return (
-    <section aria-labelledby="skills-title" className="relative w-full px-4 sm:px-6">
-      <h2 id="skills-title" className="text-3xl md:text-4xl font-bold mb-8 text-[var(--color-text)]">
+    <section
+      aria-labelledby="skills-title"
+      className="relative w-full px-4 sm:px-6"
+    >
+      <h2
+        id="skills-title"
+        className="text-3xl md:text-4xl font-bold mb-8 text-[var(--color-text)]"
+      >
         Skills
       </h2>
 
@@ -124,7 +177,6 @@ export default function SkillsInfinite() {
         pauseOnHover
         gap="0.75rem"
         bare
-        
         renderItem={renderIconOnly}
         itemKey={(it) => it.alt}
       />
@@ -137,7 +189,6 @@ export default function SkillsInfinite() {
         pauseOnHover
         gap="0.75rem"
         bare
-        
         renderItem={renderIconOnly}
         itemKey={(it) => it.alt}
       />
@@ -150,7 +201,6 @@ export default function SkillsInfinite() {
         pauseOnHover
         gap="0.75rem"
         bare
-        
         renderItem={renderIconOnly}
         itemKey={(it) => it.alt}
       />

@@ -6,11 +6,11 @@ export default function AboutMe() {
   const rootRef = useRef(null);
   const tlRef = useRef(null);
 
-  const TITLE = "Developer";
+  const TITLE = "Data Engineer";
   const P1 =
-    "I’m a developer focused on building modern web and mobile applications with React, React Native, TypeScript, and JavaScript—creating clean, scalable, user-friendly interfaces while leveraging AI-assisted tools (Claude, Cursor, ChatGPT, Copilot) to optimize workflow and code quality. I hold a Software Development Technician degree from Cenfotec and I’m finishing a Business Administration degree at LEAD University (May-June), combining technical expertise with business strategy.";
+    "I'm a Data Engineer building end-to-end ELT pipelines with Apache Airflow, dbt, BigQuery, Snowflake, and SQL — turning raw, messy sources into clean, reliable, analytics-ready data. I pair that with a full-stack background in React, Node.js, and TypeScript to ship the dashboards and internal tools on top, and I use AI-assisted workflows (Claude, Cursor) to move faster. I hold a Software Development Technician degree from Cenfotec and I'm completing a Business Administration degree at LEAD University, combining technical depth with business context.";
   const P2_PRE =
-    "I’m working toward becoming a full-stack developer, building real-world projects across front-end, back-end, auth systems, and scalable architectures. See my projects and progress on ";
+    "I focus on production-minded data work — orchestration, layered transformations, and warehouse cost/performance — through real projects. See my work and progress on ";
   const P2_LINK_TEXT = "https://github.com/ffumero2003";
   const P2_POST = ".";
 
