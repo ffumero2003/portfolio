@@ -38,6 +38,10 @@ import Airflow from "../../assets/airflow.png";
 import Snowflake from "../../assets/snowflake.png";
 import Postgres from "../../assets/postgres.png";
 import Docker from "../../assets/docker.png";
+import Looker from "../../assets/looker-icon.png";
+import Claude from "../../assets/claude-logo.png";
+import Flask from "../../assets/flask.png";
+import Pandas from "../../assets/pandas.png";
 
 const SKILLS = [
   { src: BigQuery, alt: "BigQuery", href: "https://cloud.google.com/bigquery" },
@@ -46,6 +50,19 @@ const SKILLS = [
   { src: Snowflake, alt: "Snowflake", href: "https://www.snowflake.com/" },
   { src: Postgres, alt: "PostgreSQL", href: "https://www.postgresql.org/" },
   { src: Docker, alt: "Docker", href: "https://www.docker.com/" },
+  { src: Docker, alt: "Docker", href: "https://www.docker.com/" },
+  {
+    src: Looker,
+    alt: "Looker Studio",
+    href: "https://lookerstudio.google.com/",
+  },
+  {
+    src: Claude,
+    alt: "Claude (Anthropic API)",
+    href: "https://www.anthropic.com/claude",
+  },
+  { src: Flask, alt: "Flask", href: "https://flask.palletsprojects.com/" },
+  { src: Pandas, alt: "pandas", href: "https://pandas.pydata.org/" },
   {
     src: Html,
     alt: "HTML5",
