@@ -20,6 +20,9 @@ const MainProjects = lazy(() => import("../components/portfolio/mainProjects"));
 const DataEngineering = lazy(
   () => import("../components/portfolio/dataEngineering"),
 );
+const BackendAndIntegration = lazy(
+  () => import("../components/portfolio/backendAndIntegration"),
+);
 
 export default function Portfolio() {
   return (
@@ -67,6 +70,12 @@ export default function Portfolio() {
       <section className="px-4 py-8" id="data-engineering">
         <Suspense fallback={null}>
           <DataEngineering />
+        </Suspense>
+      </section>
+
+      <section className="px-4 py-8" id="backend-integration">
+        <Suspense fallback={null}>
+          <BackendAndIntegration />
         </Suspense>
       </section>
 

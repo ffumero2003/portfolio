@@ -42,6 +42,8 @@ import Looker from "../../assets/looker-icon.png";
 import Claude from "../../assets/claude-logo.png";
 import Flask from "../../assets/flask.png";
 import Pandas from "../../assets/pandas.png";
+import Django from "../../assets/django.svg";
+import Redis from "../../assets/redis.svg";
 
 const SKILLS = [
   { src: BigQuery, alt: "BigQuery", href: "https://cloud.google.com/bigquery" },
@@ -50,7 +52,12 @@ const SKILLS = [
   { src: Snowflake, alt: "Snowflake", href: "https://www.snowflake.com/" },
   { src: Postgres, alt: "PostgreSQL", href: "https://www.postgresql.org/" },
   { src: Docker, alt: "Docker", href: "https://www.docker.com/" },
-  { src: Docker, alt: "Docker", href: "https://www.docker.com/" },
+  {
+    src: Django,
+    alt: "Django (REST Framework)",
+    href: "https://www.djangoproject.com/",
+  },
+  { src: Redis, alt: "Redis", href: "https://redis.io/" },
   {
     src: Looker,
     alt: "Looker Studio",

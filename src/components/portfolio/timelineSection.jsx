@@ -2,36 +2,35 @@ import RevealOnScroll from "../gsap/revealOnScroll";
 import useIsDesktop from "../hooks/isDesktop";
 
 const TIMELINE = [
-  // replace the "Currently" entry
   {
     title: "Data Engineer",
-    date: "NOW 2026",
-    desc: "Junior Data Engineer at CriticalRiver — building pipelines with Airflow, dbt, BigQuery, and Snowflake. Completing a BBA at LEAD University (grad. Aug 2026).",
+    date: "2026 · NOW",
+    desc: "Completed the CriticalRiver Data & AI Freshers Program (Mar–May 2026), building end-to-end pipelines with Apache Airflow, dbt, BigQuery, and Snowflake. Earned 18 official Anthropic AI/LLM certifications and am finishing a BBA at LEAD University (grad. Aug 2026).",
   },
   {
-    title: "Took Action",
-    date: "MAY 2025",
-    desc: "Sought guidance at Cenfotec after realizing my projects weren’t strong enough.",
+    title: "Software Developer Intern",
+    date: "OCT 2025 – JAN 2026",
+    desc: "Interned at PayFacility, a LATAM fintech, inside the DS Spread payment sandbox — testing and debugging authorization, reversal, and error-handling flows with ADB/Logcat.",
   },
   {
-    title: "Decision",
-    date: "JAN 2025",
-    desc: "Committed seriously, revisited front-end courses, and moved beyond basics.",
+    title: "Technical Mentorship",
+    date: "JUN – NOV 2025",
+    desc: "Mentored by David Luna (Senior Developer at Novacomp) in React architecture, component design patterns, advanced hooks, and state-management strategies.",
   },
   {
-    title: "University Technician",
-    date: "AUG 2024",
-    desc: "Graduated from CENFOTEC and deepened interest in web development.",
+    title: "Front-End Developer",
+    date: "OCT 2024 – SEP 2025",
+    desc: "Built northweek.cr from scratch at Social Brands with Shopify Liquid, HTML/CSS, and JavaScript — shipping a production e-commerce site with upselling and optimized navigation, solo.",
   },
   {
-    title: "Cenfotec University",
-    date: "OCT 2023",
-    desc: "Pursued Software Development Technician degree but didn’t go deep enough.",
+    title: "Software Development Technician",
+    date: "JUL 2024",
+    desc: "Graduated from Cenfotec University as a full-stack Software Development Technician — React, TypeScript, Node.js, databases, and software architecture.",
   },
   {
-    title: "Graduation",
-    date: "JUN 2022",
-    desc: "Finished Business Admin basics while exploring software development direction.",
+    title: "Started University",
+    date: "OCT 2022",
+    desc: "Began the Software Development Technician program at Cenfotec and a Bachelor of Business Administration at LEAD University in parallel.",
   },
 ];
 
