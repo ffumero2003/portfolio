@@ -53,6 +53,54 @@ const PROJECTS = [
     lookerUrl: "", // optional — no dashboard for this one, leaves the button hidden
     linkedinUrl: "", // optional — paste your LinkedIn post link to show the button
   },
+
+  {
+    title: "Pre-Signed URL Upload Service",
+    oneLiner:
+      "A backend that issues time-limited signed URLs so clients upload files directly into a private cloud bucket, then notify the service — the exact connector pattern of client → storage → backend, with the bucket never going public and the file bytes never passing through the API.",
+    overview:
+      "A Flask service that brokers secure uploads without ever exposing the storage bucket or routing file bytes through the API. A client asks for permission to upload; the service signs a short-lived, single-object, single-verb (PUT) URL using a service-account key and returns it. The client uploads the file straight to a private Google Cloud Storage bucket with that URL — offloading the heavy transfer off the API entirely. The client then notifies the backend, which verifies the object actually exists in the bucket (rather than trusting the client's claim) before recording its metadata. Built from scratch to learn object storage and signed URLs hands-on, mapping directly to the AWS S3 pre-signed URL equivalent.",
+    tech: [
+      "Python",
+      "Flask",
+      "Google Cloud Storage",
+      "Signed URLs",
+      "REST APIs",
+      "Service Accounts / IAM",
+    ],
+    features: [
+      "Issues v4 signed PUT URLs scoped to one object and one operation, signed locally with a service-account private key — no credentials exposed and the bucket never made public",
+      "Direct-to-bucket uploads: the file travels client → storage on its own lane, so the API only handles permission and metadata and stays light regardless of file size",
+      "Short TTL on every URL (least-privilege + time-boxed): a leaked URL is rejected by storage within minutes — demonstrated with an ExpiredToken rejection on an expired URL",
+      "Verify-don't-trust on completion: the backend confirms the object exists in the bucket (blob.exists) before recording, returning 404 when a claimed upload isn't there",
+      "Three REST endpoints with proper status codes: POST /upload-url (issue), POST /complete (verify + record), GET /files (list)",
+      "Documented S3 equivalence (boto3 generate_presigned_url) and honest limitations (in-memory metadata, no auth, dev server) for production-readiness framing",
+    ],
+    video: "/backendAndIntegration/presigned-upload-service/presigned-demo.mp4",
+    poster:
+      "/backendAndIntegration/presigned-upload-service/signed-url-issued.png",
+    architecture:
+      "/backendAndIntegration/presigned-upload-service/presigned-url-service-architecture.png",
+    architectureCaption:
+      "Client → POST /upload-url → service signs a short-lived PUT URL → client uploads the file DIRECTLY to the private GCS bucket (bytes never touch the API) → client calls POST /complete → backend verifies the object exists and records its metadata. The bucket stays private throughout; each URL is single-object, single-verb, and time-boxed.",
+    gallery: [
+      {
+        src: "/backendAndIntegration/presigned-upload-service/signed-url-issued.png",
+        label: "Signed URL issued — time-limited PUT permission",
+      },
+      {
+        src: "/backendAndIntegration/presigned-upload-service/recorded-metadata.png",
+        label: "Backend verifies the object, then records its metadata",
+      },
+      {
+        src: "/backendAndIntegration/presigned-upload-service/expiry-rejection.png",
+        label: "Expired URL rejected by storage — TTL enforced",
+      },
+    ],
+    githubUrl: "https://github.com/ffumero2003/presigned-upload-service",
+    lookerUrl: "", // no dashboard for this one
+    linkedinUrl: "", // paste your LinkedIn post link to show the button
+  },
 ];
 
 function buttonClass(variant = "solid") {
