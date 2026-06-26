@@ -110,6 +110,55 @@ const PROJECTS = [
       "https://datastudio.google.com/reporting/bf6b79e2-35bb-47e0-bcad-16d057153661", // optional — paste your shared Looker report link to show the button
     linkedinUrl: "", // optional — paste your LinkedIn post link to show the button
   },
+
+  {
+    title: "GitHub Firehose — Developer Activity Intelligence",
+    oneLiner:
+      "An end-to-end PySpark pipeline that ingests 100M+ nested JSON events from the GitHub Archive firehose, transforms them into a BigQuery star schema, models analytical marts with dbt, and visualizes developer activity in Looker Studio.",
+    overview:
+      "An end-to-end data pipeline built around a real PySpark layer. GitHub Archive emits ~4M nested JSON events per day — too large for pandas (volume) and too nested to flatten easily (shape). PySpark reads the raw hourly files with a hand-written explicit schema, filters to four event types, flattens nested structs, and explodes the commits array into a separate commit-grain fact (a deliberate grain change). The result is written to a BigQuery star schema (two facts + four dimensions) via the direct Storage Write API. dbt then builds five analytical marts on top and enforces 11 data-quality tests (uniqueness, not-null, referential integrity), and a Looker Studio dashboard surfaces event volume, PR throughput, top contributors, and repository activity. The whole flow is orchestrated as an Apache Airflow DAG.",
+    tech: [
+      "PySpark",
+      "BigQuery",
+      "dbt",
+      "Python",
+      "SQL",
+      "Apache Airflow",
+      "GitHub Archive",
+      "Looker Studio",
+    ],
+    features: [
+      "Real PySpark transform layer on 100M+ nested events — explicit schema for contract safety, filter-early predicate pushdown, and a true explode of the nested commits array (event grain → commit grain)",
+      "Star schema in BigQuery: two fact tables at different grains (event and commit) plus four deduplicated dimensions, written via the direct Storage Write API to avoid GCS staging",
+      "Window chosen on payload completeness — discovered during a smoke test that recent PushEvents dropped inline commits, so locked the window to a period where commit data is complete",
+      "dbt transformation layer building five analytical marts, with 11 data-quality tests (unique, not_null, relationships) reconciling exactly against the Spark layer's counts",
+      "Interactive Looker Studio dashboard: event volume by type, PR throughput, top contributors, and busiest repositories — surfacing real data skew (one bot drove ~27% of all events)",
+      "Idempotent, validated daily ingestion orchestrated as an Apache Airflow DAG (download → Spark → dbt run → dbt test), halting on any failure",
+    ],
+    video: "/dataEngineering/githubFirehose/github-firehose-video.mp4",
+    poster: "/dataEngineering/githubFirehose/REPLACE-with-poster.png",
+    architecture: "/dataEngineering/githubFirehose/architecture.png",
+    architectureCaption:
+      "GitHub Archive (raw nested .json.gz) → Python (idempotent download + validation) → PySpark (explicit schema, filter, flatten, explode commits) → BigQuery (star schema: 2 facts + 4 dims, direct Storage Write API) → dbt (5 marts + 11 tests) → Looker Studio dashboard. Orchestrated daily by an Apache Airflow DAG.",
+    gallery: [
+      {
+        src: "/dataEngineering/githubFirehose/github-firehose-looker-studio.png",
+        label: "Looker Studio dashboard",
+      },
+      {
+        src: "/dataEngineering/githubFirehose/bigquery-tables.png",
+        label: "BigQuery star schema & row counts",
+      },
+      {
+        src: "/dataEngineering/githubFirehose/dbt-tests.png",
+        label: "dbt marts & passing tests",
+      },
+    ],
+    githubUrl: "https://github.com/ffumero2003/github-firehose-activity",
+    lookerUrl:
+      "https://datastudio.google.com/reporting/3407eaa5-c7de-4c20-94c4-0cae761103b8", // paste your shared Looker report link to show the Live Dashboard button
+    linkedinUrl: "",
+  },
 ];
 
 function buttonClass(variant = "solid") {
@@ -156,7 +205,7 @@ function ProjectCard({ project }) {
               <h3 className="text-xl md:text-3xl font-semibold tracking-tight text-[var(--color-text)]">
                 {project.title}
               </h3>
-              <p className="mt-2 text-sm md:text-base text-[var(--color-text)]/80 max-w-3xl">
+              <p className="mt-2 text-sm md:text-base text-[var(--color-text)]/80">
                 {project.oneLiner}
               </p>
               <div className="mt-4 flex flex-wrap gap-1.5">
@@ -233,7 +282,7 @@ function ProjectCard({ project }) {
                   </div>
 
                   {/* Overview */}
-                  <p className="mt-6 text-sm md:text-base leading-relaxed text-[var(--color-text)]/80 max-w-3xl">
+                  <p className="mt-6 text-sm md:text-base leading-relaxed text-[var(--color-text)]/80">
                     {project.overview}
                   </p>
 
@@ -285,7 +334,7 @@ function ProjectCard({ project }) {
                         loading="lazy"
                       />
                     </button>
-                    <p className="mt-3 text-xs md:text-sm text-[var(--color-text)]/70 max-w-3xl">
+                    <p className="mt-3 text-xs md:text-sm text-[var(--color-text)]/70">
                       {project.architectureCaption}
                     </p>
                   </div>

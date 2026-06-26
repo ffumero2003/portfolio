@@ -147,7 +147,7 @@ function ProjectCard({ project }) {
               <h3 className="text-xl md:text-3xl font-semibold tracking-tight text-[var(--color-text)]">
                 {project.title}
               </h3>
-              <p className="mt-2 text-sm md:text-base text-[var(--color-text)]/80 max-w-3xl">
+              <p className="mt-2 text-sm md:text-base text-[var(--color-text)]/80">
                 {project.oneLiner}
               </p>
               <div className="mt-4 flex flex-wrap gap-1.5">
@@ -224,7 +224,7 @@ function ProjectCard({ project }) {
                   </div>
 
                   {/* Overview */}
-                  <p className="mt-6 text-sm md:text-base leading-relaxed text-[var(--color-text)]/80 max-w-3xl">
+                  <p className="mt-6 text-sm md:text-base leading-relaxed text-[var(--color-text)]/80">
                     {project.overview}
                   </p>
 
@@ -276,7 +276,7 @@ function ProjectCard({ project }) {
                         loading="lazy"
                       />
                     </button>
-                    <p className="mt-3 text-xs md:text-sm text-[var(--color-text)]/70 max-w-3xl">
+                    <p className="mt-3 text-xs md:text-sm text-[var(--color-text)]/70">
                       {project.architectureCaption}
                     </p>
                   </div>
