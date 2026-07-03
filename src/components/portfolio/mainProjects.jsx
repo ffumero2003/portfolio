@@ -7,6 +7,7 @@ import PuffZero from "../../assets/mainProjects/puffzero-image.png";
 import AuthFlow from "../../assets/mainProjects/auth-flow.png";
 import JobFlow from "../../assets/mainProjects/job-flow.png";
 import SearchFilterSystem from "../../assets/mainProjects/search-system.png";
+import EldTripPlanner from "../../assets/mainProjects/eld-trip-planner.png";
 import UnderConstruction from "../../assets/underConstruction/progress.png";
 
 const MAIN_PROJECTS = [
@@ -83,6 +84,25 @@ const MAIN_PROJECTS = [
       "LocalStorage",
     ],
   },
+  {
+    imageUrl: EldTripPlanner,
+    title: "ELD Trip Planner",
+    learning:
+      "Full-stack trucking app that computes FMCSA Hours-of-Service logs, maps multi-stop routes with fuel/rest stops, and explains each trip with Claude AI.",
+
+    githubUrl: "https://github.com/ffumero2003/eld-trip-planner",
+    liveUrl: "https://eld-trip-planner-omega.vercel.app/",
+    githubComingSoon: false,
+    comingSoon: false,
+    tags: [
+      "React",
+      "Django",
+      "REST API",
+      "Leaflet Maps",
+      "Claude AI",
+      "Full-Stack",
+    ],
+  },
 ];
 
 export default function MainProjects() {
@@ -112,8 +132,8 @@ export default function MainProjects() {
       </div>
 
       {/* Bottom row - 2 projects centered */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 max-w-4xl mx-auto">
-        {MAIN_PROJECTS.slice(3, 5).map((p, i) => (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 mb-4 lg:mb-6">
+        {MAIN_PROJECTS.slice(3, 6).map((p, i) => (
           <RevealOnScroll key={p.githubUrl}>
             <DirectionAwareHoverCardMain
               imageUrl={p.imageUrl}

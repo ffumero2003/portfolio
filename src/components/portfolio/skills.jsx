@@ -44,6 +44,7 @@ import Flask from "../../assets/flask.png";
 import Pandas from "../../assets/pandas.png";
 import Django from "../../assets/django.svg";
 import Redis from "../../assets/redis.svg";
+import Leaflet from "../../assets/leaflet.png";
 
 const SKILLS = [
   { src: BigQuery, alt: "BigQuery", href: "https://cloud.google.com/bigquery" },
@@ -137,6 +138,7 @@ const SKILLS = [
     href: "https://reactnavigation.org/",
   },
   { src: Cursor, alt: "Cursor AI", href: "https://www.cursor.com/" },
+  { src: Leaflet, alt: "Leaflet", href: "https://leafletjs.com/" },
 ];
 
 export default function SkillsInfinite() {
