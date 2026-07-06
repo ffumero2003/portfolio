@@ -16,39 +16,38 @@ const PROJECTS = [
       "Olist Brazilian E-Commerce (public, Kaggle). ~110K delivered orders from 2017 to 2018, spanning orders, sellers, products, customers, and estimated vs actual delivery dates.",
     datasetUrl: "https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce",
 
-    // Simpler, plainer findings. One per visual. Verify numbers against your live dashboard.
+    // Findings: each names the top/bottom item and says if it is good or bad.
     findings: [
       {
         visual: "Late Delivery Rate",
         insight:
-          "About 7.91% of orders arrived after the promised date, roughly 1 in 13. That is the baseline the rest of the dashboard compares against.",
+          "About 7.91% of orders arrived after the promised date, roughly 1 in 13. That is actually healthy, since Olist pads its delivery estimates, so a single digit rate is the good baseline the rest of the dashboard compares against.",
       },
       {
         visual: "Late Rate Trend by Month",
         insight:
-          "The late rate stays low through 2017, then climbs to a peak near 20% in early 2018 as order volume grows.",
+          "This is the warning sign. The late rate is low through 2017 but climbs to a peak near 20% in early 2018 as order volume grows. The trend going up as the business scales suggests delivery capacity is not keeping pace with demand.",
       },
       {
         visual: "Late Rate by Seller Region",
         insight:
-          "Most regions sit in single digits. Amazonas looks worst but has very few orders, so its rate is noisy and needs to be read with volume in mind.",
+          "Amazonas shows the highest late rate, but it has very few orders, so that number is noisy and not trustworthy on its own. The real takeaway is that regional rates have to be read alongside order volume before drawing conclusions.",
       },
       {
         visual: "Delivery Speed by State",
         insight:
-          "Remote northern states take 20 to 30 days on average, while states near São Paulo take about half that. Distance is the main driver.",
+          "The remote northern states are the worst, averaging 20 to 30 days to deliver, while states near the São Paulo hub are the best at about half that. Distance from the logistics core is the main driver, so this is a structural problem, not an operational one.",
       },
       {
         visual: "Freight Burden by Category",
         insight:
-          "Shipping is heaviest as a share of price for cheap, bulky items, where freight can rival the item price itself. It is lightest for small, high value goods.",
+          "Cheap, bulky categories are the worst offenders, where shipping can cost almost as much as the item itself, while small high value goods are the lightest. This flags where freight is quietly eating into margin.",
       },
     ],
 
-    // Short overall takeaway. Replaces recommendations and limitations.
+    // Plain language conclusion with a clear objective, the kind you can read aloud.
     conclusions:
-      "Delivery performance is healthy overall at about 8% late, but it degrades over time as volume scales and it is worst in remote regions far from the São Paulo hub. Freight cost is heaviest on cheap bulky categories. Together these point operations toward capacity as volume grows, regional delivery estimates, and freight review on low value categories.",
-
+      "The goal was to find where Olist's delivery promises break down and what it costs. Overall delivery is healthy at about 8% late, but two things stand out. First, the late rate is climbing over time as order volume grows, which suggests capacity is not scaling with demand. Second, the problem is worst in remote regions far from the São Paulo hub, where distance makes deliveries structurally slower. On the cost side, shipping is heaviest on cheap bulky products, where freight can rival the item price. So the recommendations are to invest in delivery capacity as volume grows, set more realistic delivery windows for remote regions, and review freight economics on low value categories.",
     liveUrl: "",
     walkthroughVideo: "", // e.g. "/dataAnalytics/olist/walkthrough.mp4" a screen recording
     heroImage: "/dataAnalytics/quickSight/olist/dashboard-overview.png", // full dashboard screenshot
@@ -79,6 +78,89 @@ const PROJECTS = [
     ],
 
     linkedinUrl: "", // optional LinkedIn post link
+  },
+
+  {
+    title: "DataCo Delivery and Sourcing Performance. Tableau BI Dashboard",
+    oneLiner:
+      "A five visual Tableau Public dashboard over ~180K supply chain orders, surfacing what actually drives late delivery, across shipping mode, product category, and geography, plus which categories carry the thinnest margins.",
+    tech: ["Tableau Public", "SQL", "Python", "pandas", "Data Modeling"],
+
+    dataset:
+      "DataCo Smart Supply Chain (public, Kaggle). ~180K orders with scheduled vs actual shipping days, shipping mode, product category, order region, and profit ratio.",
+    datasetUrl:
+      "https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis",
+
+    // One finding per visual. Verify numbers against your live dashboard.
+    findings: [
+      {
+        visual: "Late Delivery Rate",
+        insight:
+          "About 57% of all orders arrived after the scheduled date. That is high, more than half of deliveries miss their promise, and it is the baseline the rest of the dashboard breaks down to explain.",
+      },
+      {
+        visual: "Late Rate by Shipping Mode",
+        insight:
+          "This is where the real problem lives. First Class is the worst at roughly 95% late, and Standard Class is the best at roughly 40%. That is the opposite of what customers expect, the premium fast option misses most often because its promised window is the tightest, so the fix is aligning promises with what each mode can actually deliver.",
+      },
+      {
+        visual: "Late Rate by Category",
+        insight:
+          "Late rate barely moves across products, everything sits between about 55 and 62%, with Golf Bags and Carts highest and Men's Clothing lowest. The takeaway is a negative one in a useful way, category is not driving lateness, so effort should not go here.",
+      },
+      {
+        visual: "Late Rate by Country",
+        insight:
+          "Late rate varies by destination. A handful of countries run well above the global average and show up as the darkest on the map, which flags them as the geographies to investigate first, while most of the world sits near the 57% baseline.",
+      },
+      {
+        visual: "Least Profitable Categories",
+        insight:
+          "Unlike late rate, margin varies a lot by category. Men's Clothing is the worst with the thinnest average profit ratio, and CDs sit at the healthier end. The color overlay adds the important cross check, whether a thin margin category is also frequently late, since that combination is where delivery problems hurt profit the most.",
+      },
+    ],
+
+    // Overall takeaway, in plain language
+    conclusions:
+      "The goal was to find what actually causes late deliveries. The answer is shipping speed, not the product. First Class, the fastest option, is late about 95% of the time because its promised window is the hardest to hit, while the slowest option, Standard, is late only about 40%. Product category made almost no difference. So the fix is to set more realistic delivery promises for the fast shipping options, instead of blaming specific products. On the money side, profit varies a lot more by category than lateness does, which shows where a late delivery would cost the business the most.",
+    // Paste your public Tableau URL here to enable the button
+    liveUrl:
+      "https://public.tableau.com/views/DataCoDeliverySourcingPerformance/DataCoDeliverySourcingPerformance?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    // Tableau Public embeds are public, so a screen recording is optional here
+    walkthroughVideo: "",
+    heroImage: "/dataAnalytics/tableau/dataco/dashboard-overview.png",
+    notebookUrl:
+      "https://colab.research.google.com/drive/1Sm29BMu0FbqE4AAkmiqD7cb58QtFX8UH?usp=sharing",
+
+    // Optional pipeline diagram. Leave "" to hide the section (same guard as Olist).
+    architecture: "",
+    architectureCaption: "",
+
+    // One screenshot per visual
+    gallery: [
+      {
+        src: "/dataAnalytics/tableau/dataco/kpi-late-rate.png",
+        label: "Late Delivery Rate. 57.3% baseline",
+      },
+      {
+        src: "/dataAnalytics/tableau/dataco/late-rate-by-shipping-mode.png",
+        label: "Late rate by shipping mode, the real driver",
+      },
+      {
+        src: "/dataAnalytics/tableau/dataco/late-rate-by-category.png",
+        label: "Late rate by category, uniform across products",
+      },
+      {
+        src: "/dataAnalytics/tableau/dataco/late-rate-by-country.png",
+        label: "Late rate by country",
+      },
+      {
+        src: "/dataAnalytics/tableau/dataco/least-profitable-categories.png",
+        label: "Least profitable categories, colored by late rate",
+      },
+    ],
+
+    linkedinUrl: "",
   },
 ];
 
