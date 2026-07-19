@@ -28,6 +28,10 @@ const DataAnalytics = lazy(
   () => import("../components/portfolio/dataAnalytics"),
 );
 
+const AiApplications = lazy(
+  () => import("../components/portfolio/aiAplications"),
+);
+
 export default function Portfolio() {
   return (
     <div className="relative min-h-[100svh]" id="app-scroll">
@@ -80,6 +84,12 @@ export default function Portfolio() {
       <section className="px-4 py-8" id="backend-integration">
         <Suspense fallback={null}>
           <DataAnalytics />
+        </Suspense>
+      </section>
+
+      <section className="px-4 py-8" id="backend-integration">
+        <Suspense fallback={null}>
+          <AiApplications />
         </Suspense>
       </section>
 

@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import RevealOnScroll from "../gsap/revealOnScroll";
 
@@ -335,18 +336,20 @@ function ProjectCard({ project }) {
       </RevealOnScroll>
 
       {/* Lightbox (per card) */}
-      {lightbox && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 cursor-zoom-out"
-          onClick={() => setLightbox(null)}
-        >
-          <img
-            src={lightbox}
-            alt="Enlarged screenshot"
-            className="max-h-[90vh] max-w-[92vw] rounded-xl object-contain"
-          />
-        </div>
-      )}
+      {lightbox &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 cursor-zoom-out"
+            onClick={() => setLightbox(null)}
+          >
+            <img
+              src={lightbox}
+              alt="Enlarged screenshot"
+              className="max-h-[90vh] max-w-[92vw] rounded-xl object-contain"
+            />
+          </div>,
+          document.body
+        )}
     </>
   );
 }
