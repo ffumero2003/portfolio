@@ -1,6 +1,5 @@
 "use client";
 import { useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import RevealOnScroll from "../gsap/revealOnScroll";
 
@@ -35,7 +34,6 @@ const PROJECTS = [
       "One shared orchestration behind two interfaces (CLI + React/FastAPI web); everything provider-facing routes through the genblaze pipeline — no direct SDK / boto3 / raw HTTP",
     ],
     video: "/aiApplications/promptGate/prompt-gate.mp4",
-    poster: "/aiApplications/promptGate/web-demo.png",
     architecture: "/aiApplications/promptGate/architecture.png",
     architectureCaption:
       "Prompt → gate (daily-run ledger → cost guard → LLM scope classifier) → gpt-image-1 generation → gpt-4o scoring → retry-on-feedback loop (up to 3×) → Backblaze B2 storage with a provenance manifest. One shared Python core serves both a CLI and a React (Vite + Tailwind) frontend over a FastAPI /generate endpoint.",
@@ -150,7 +148,6 @@ function ProjectCard({ project }) {
                       ref={videoRef}
                       className="w-full aspect-video object-cover cursor-pointer"
                       src={project.video}
-                      poster={project.poster}
                       autoPlay
                       muted
                       loop
@@ -279,20 +276,18 @@ function ProjectCard({ project }) {
         </article>
       </RevealOnScroll>
 
-      {lightbox &&
-        createPortal(
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 cursor-zoom-out"
-            onClick={() => setLightbox(null)}
-          >
-            <img
-              src={lightbox}
-              alt="Enlarged screenshot"
-              className="max-h-[90vh] max-w-[92vw] rounded-xl object-contain"
-            />
-          </div>,
-          document.body
-        )}
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 cursor-zoom-out"
+          onClick={() => setLightbox(null)}
+        >
+          <img
+            src={lightbox}
+            alt="Enlarged screenshot"
+            className="max-h-[90vh] max-w-[92vw] rounded-xl object-contain"
+          />
+        </div>
+      )}
     </>
   );
 }
