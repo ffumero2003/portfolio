@@ -160,6 +160,54 @@ const PROJECTS = [
       "https://datastudio.google.com/reporting/3407eaa5-c7de-4c20-94c4-0cae761103b8", // paste your shared Looker report link to show the Live Dashboard button
     linkedinUrl: "",
   },
+  {
+    title: "Terraform Data Platform + AI Viewer",
+    oneLiner:
+      "A minimal analytics platform on GCP where every cloud resource — buckets, BigQuery datasets, tables, service account, and IAM roles — is provisioned as code with Terraform, and a Streamlit + AI viewer on top can read the data but is physically unable to write it, because the infrastructure won't allow it.",
+    overview:
+      'An Infrastructure-as-Code platform on Google Cloud. Terraform provisions the entire stack — a GCS landing bucket, two BigQuery datasets (raw and analytics), the indicators table with an explicit schema, a read-only service account, and its IAM roles — so the whole environment is reproducible, versioned, and reviewable from a single `terraform apply`. Python loads live FRED economic indicators into BigQuery running as the owner (which can write), while a Streamlit viewer on top authenticates as the read-only service account via impersonation — no key file ever touches disk. The app charts any indicator and has an "Explain with AI" button that sends the on-screen rows to an LLM for a plain-English trend read. The core design point: the AI layer can generate any query it wants, but the service account Terraform granted it holds only jobUser + dataViewer — so an INSERT, UPDATE, or DELETE is rejected by IAM before it reaches the data. The guardrail is enforced at the infrastructure layer, not by a string check in application code.',
+    tech: [
+      "Terraform",
+      "GCP",
+      "BigQuery",
+      "IAM",
+      "Python",
+      "Streamlit",
+      "pandas",
+      "FRED API",
+      "OpenAI API",
+    ],
+    features: [
+      "100% Infrastructure-as-Code: bucket, 2 BigQuery datasets, table with explicit schema, service account, and IAM bindings all provisioned by Terraform — reproducible from a single apply, idempotent on re-run (terraform plan reports no changes)",
+      "Least-privilege service account: jobUser (project-level, to start a query job) + dataViewer (scoped to one dataset) and nothing else — no dataEditor, no dataOwner",
+      "Infrastructure-enforced AI guardrail: the app impersonates the read-only SA, so any write the AI generates is rejected by IAM (403 PERMISSION_DENIED) before touching data — not blocked by app-side string checks",
+      "Keyless auth via service-account impersonation: the app borrows the SA's identity at runtime with a short-lived token — no long-lived key file on disk to leak or commit",
+      "Separation of write vs. read paths: a one-time Python loader writes as the owner; the runtime app can only read as the SA — the two identities are deliberately distinct",
+      'Live FRED ingestion into BigQuery plus a Streamlit chart and an "Explain with AI" button that turns the on-screen rows into a plain-English trend explanation',
+    ],
+    video: "/dataEngineering/terraform-project/terraform-iac-video.mp4",
+    architecture:
+      "/dataEngineering/terraform-project/terraform-architecture.png",
+    architectureCaption:
+      "Terraform (main.tf) provisions the whole platform: GCS bucket, BigQuery datasets, the indicators table, the read-only service account, and its IAM roles. FRED API → load_data.py (runs as OWNER, can write) → BigQuery. At runtime the Streamlit app impersonates the read-only SA: SELECT succeeds, but INSERT/UPDATE/DELETE is rejected by IAM (403) — the guardrail is infrastructure, not application code. On-screen rows go to the OpenAI API for a plain-English trend explanation.",
+    gallery: [
+      {
+        src: "/dataEngineering/terraform-project/terraform-state.png",
+        label: "terraform state — all 8 resources managed as code",
+      },
+      {
+        src: "/dataEngineering/terraform-project/streamlit-app.png",
+        label: "Streamlit viewer, querying as the read-only SA",
+      },
+      {
+        src: "/dataEngineering/terraform-project/readonly-denied.png",
+        label: "Write blocked by IAM — 403 PERMISSION_DENIED",
+      },
+    ],
+    githubUrl: "https://github.com/ffumero2003/terraform-gcp-data-platform",
+    lookerUrl: "",
+    linkedinUrl: "",
+  },
 ];
 
 function buttonClass(variant = "solid") {
@@ -259,7 +307,6 @@ function ProjectCard({ project }) {
                       ref={videoRef}
                       className="w-full aspect-video object-cover cursor-pointer"
                       src={project.video}
-                      poster={project.poster}
                       autoPlay
                       muted
                       loop
@@ -406,7 +453,7 @@ function ProjectCard({ project }) {
               className="max-h-[90vh] max-w-[92vw] rounded-xl object-contain"
             />
           </div>,
-          document.body
+          document.body,
         )}
     </>
   );
