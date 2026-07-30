@@ -82,7 +82,7 @@ const PROJECTS = [
     { src: "/aiApplications/benchmarkRetrieval/scoreboard.png", label: "The measured scores for both systems" },
     { src: "/aiApplications/benchmarkRetrieval/eval-run.png", label: "The scoring script that produces every number in the app" },
   ],
-  githubUrl: "https://github.com/ffumero2003/retrieval-benchmark-project",
+  githubUrl: "https://github.com/ffumero2003/retrieval-benchmark",
   lookerUrl: "",
   linkedinUrl: "",
 }
