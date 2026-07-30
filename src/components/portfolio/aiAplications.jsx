@@ -53,6 +53,39 @@ const PROJECTS = [
     ],
     githubUrl: "https://github.com/ffumero2003/prompt-gate",
   },
+  {
+  title: "Retrieval Quality Benchmark - Smarter RAG vs Plain Vector Search",
+  oneLiner:
+    "Two search systems, the same documents, the same questions - and real numbers showing which one actually finds the right answer more often.",
+  overview:
+    "Most RAG projects bolt on reranking and hybrid search, then just assume things got better. This one measures it. I built a document set from Apple's latest 10-K filing (the risk factors and management discussion sections), split it into 134 pieces, and indexed those pieces two different ways. The first way is plain vector search - the standard approach. The second way has an AI model write a short summary of where each piece sits in the document before indexing it, then searches using both keyword matching and vector similarity, combines the two result lists, and finally reranks them with Cohere. Both systems get the exact same six questions. I wrote an answer key by hand with the exact sentences that count as correct, and the app shows both sets of results side by side with each one marked right or wrong. The smarter pipeline wins on every metric. This is search only - it doesn't write answers, so the numbers measure finding, not writing.",
+  tech: [
+    "Python", "RAG", "Chroma", "all-MiniLM-L6-v2", "OpenAI API",
+    "Cohere Rerank", "BM25", "FastAPI", "React", "Vite", "pytest", "SEC EDGAR API",
+  ],
+  features: [
+    "Both search systems read the exact same 134 pieces of text, split at the exact same points - so any difference in the scores comes from the search method and nothing else",
+    "Before indexing, an AI model writes a one-line summary of where each piece sits in the document, so a paragraph that says 'these risks' still makes sense on its own",
+    "Combines keyword search and vector search, merges the two ranked lists, then has Cohere reorder the finalists - each step is a standard technique, measured rather than assumed",
+    "The results: plain vector search finds the answer 75% of the time; the upgraded pipeline finds it 100% of the time, and ranks it higher when it does",
+    "An answer is only counted correct if the retrieved text contains the exact wording from the answer key - the AI-written summary never counts, so the score measures search quality and not the AI's writing",
+    "Every result can be traced back to the original file and verified character by character, so nothing shown on screen is unverifiable",
+    "A separate free-text box lets you ask anything, and those results are never scored - there is no answer key for a made-up question, so the app is built so it physically cannot mark them right or wrong",
+    "398 backend tests and 42 frontend tests, including deliberate trap cases that fail if the app ever fakes a correct/incorrect mark instead of reading the real measured one",
+  ],
+  video: "/aiApplications/benchmarkRetrieval/benchmark-retrieval.mp4",
+  architecture: "/aiApplications/benchmarkRetrieval/architecture.png",
+  architectureCaption:
+    "Apple's 10-K is downloaded from SEC EDGAR, trimmed to two sections, and split into 134 pieces. Those same pieces are indexed twice: once as-is, and once with an AI-written context line attached. A question then runs through both systems - the plain one does vector search, the upgraded one does keyword plus vector search, merges the results, and reranks them with Cohere. A scoring script grades both against a hand-written answer key, saves the numbers to a file, and the web app displays them side by side. A separate free-text search runs both systems live but is never scored.",
+  gallery: [
+    { src: "/aiApplications/benchmarkRetrieval/diff-q3.png", label: "Side by side - the plain search misses the answer, the upgraded one finds it" },
+    { src: "/aiApplications/benchmarkRetrieval/scoreboard.png", label: "The measured scores for both systems" },
+    { src: "/aiApplications/benchmarkRetrieval/eval-run.png", label: "The scoring script that produces every number in the app" },
+  ],
+  githubUrl: "https://github.com/ffumero2003/retrieval-benchmark-project",
+  lookerUrl: "",
+  linkedinUrl: "",
+}
 ];
 
 function buttonClass(variant = "solid") {
