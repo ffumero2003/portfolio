@@ -150,11 +150,13 @@ export default function ProjectDeepCard({ project }) {
                           onClick={() => setLightbox(project.poster)}
                           className="block w-full overflow-hidden rounded-xl ring-1 ring-[var(--card-ring)] hover:ring-[var(--card-ring-hover)] transition"
                         >
+                          {/* Not lazy: the card body only mounts once expanded, and
+                              with h-auto a not-yet-loaded image has zero height,
+                              which makes the expand animation jump. */}
                           <img
                             src={project.poster}
                             alt={`${project.title} screenshot`}
                             className="w-full h-auto object-contain"
-                            loading="lazy"
                           />
                         </button>
                         {project.videoComingSoon && (

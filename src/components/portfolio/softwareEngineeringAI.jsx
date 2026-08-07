@@ -1,6 +1,8 @@
 "use client";
 import ProjectDeepCard from "./projectDeepCard";
 import EldTripPlanner from "../../assets/mainProjects/eld-trip-planner.png";
+import EldTripPlannerVideo from "../../assets/mainProjects/eld-trip-planner-video.mp4"
+
 
 // Lead section: backend services, integrations, and AI systems.
 // Order here is the order they render — strongest engineering work first.
@@ -235,7 +237,7 @@ const PROJECTS = [
     ],
     // Placeholder: no demo recorded yet. Set `video` to the .mp4 path once it exists
     // and the card switches from the still image to the video hero automatically.
-    video: "",
+    video: EldTripPlannerVideo,
     videoComingSoon: true,
     poster: EldTripPlanner,
     githubUrl: "https://github.com/ffumero2003/eld-trip-planner",

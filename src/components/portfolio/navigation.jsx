@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Theme from "./nav/themeSwitch";
 import CvButton from "./cvButton";
+import SiteCodeButton from "./siteCodeButton";
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
@@ -56,6 +57,9 @@ export default function Navigation() {
             <Logo />
             <div className="hidden md:block md:scale-95 lg:scale-100">
               <CvButton />
+            </div>
+            <div className="hidden md:block md:scale-95 lg:scale-100">
+              <SiteCodeButton />
             </div>
           </div>
 
@@ -218,6 +222,10 @@ export default function Navigation() {
 
           <div className="px-2 pt-2">
             <CvButton />
+          </div>
+
+          <div className="px-2 pt-2">
+            <SiteCodeButton />
           </div>
 
           <div className="px-2 pt-2">

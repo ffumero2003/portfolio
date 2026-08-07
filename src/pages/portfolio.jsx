@@ -8,7 +8,6 @@ const TimelineSection = lazy(
 );
 const Skills = lazy(() => import("../components/portfolio/skills"));
 const AboutMe = lazy(() => import("../components/portfolio/aboutMe"));
-const Banner = lazy(() => import("../components/portfolio/banner"));
 const ProjectsSection = lazy(
   () => import("../components/portfolio/projectsSection"),
 );
@@ -16,20 +15,12 @@ const ContactSection = lazy(
   () => import("../components/portfolio/contactSection"),
 );
 const Footer = lazy(() => import("../components/portfolio/footer"));
-const MainProjects = lazy(() => import("../components/portfolio/mainProjects"));
 const DataEngineering = lazy(
   () => import("../components/portfolio/dataEngineering"),
-);
-const BackendAndIntegration = lazy(
-  () => import("../components/portfolio/backendAndIntegration"),
 );
 
 const DataAnalytics = lazy(
   () => import("../components/portfolio/dataAnalytics"),
-);
-
-const AiApplications = lazy(
-  () => import("../components/portfolio/aiAplications"),
 );
 
 const SoftwareEngineeringAI = lazy(
@@ -77,13 +68,10 @@ export default function Portfolio() {
         </Suspense>
       </section>
 
-      <section id="projects">
-        <Suspense fallback={null}>
-          <Banner />
-        </Suspense>
-      </section>
-
-      <section className="px-4 py-8" id="software-engineering-ai-wrap">
+      <section
+        className="px-4 py-8 scroll-mt-24 md:scroll-mt-28"
+        id="projects"
+      >
         <Suspense fallback={null}>
           <SoftwareEngineeringAI />
         </Suspense>
@@ -104,24 +92,6 @@ export default function Portfolio() {
       <section className="px-4 py-8" id="backend-integration">
         <Suspense fallback={null}>
           <DataAnalytics />
-        </Suspense>
-      </section>
-
-      <section className="px-4 py-8" id="backend-integration">
-        <Suspense fallback={null}>
-          <AiApplications />
-        </Suspense>
-      </section>
-
-      <section className="px-4 py-8" id="backend-integration">
-        <Suspense fallback={null}>
-          <BackendAndIntegration />
-        </Suspense>
-      </section>
-
-      <section className="px-4 py-8">
-        <Suspense fallback={null}>
-          <MainProjects />
         </Suspense>
       </section>
 

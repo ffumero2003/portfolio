@@ -1,8 +1,8 @@
 "use client";
 import ProjectDeepCard from "./projectDeepCard";
-// Slip and PuffZero use background-stripped copies of the Main Projects mockups:
-// the originals bake a flat grey canvas behind the phone, which clashes with the
-// card surface. The originals are untouched and still used by mainProjects.jsx.
+// Slip and PuffZero use background-stripped copies of their mockups: the original
+// exports bake a flat grey canvas behind the phone, which clashes with the card
+// surface. Regenerate these if the mockups are ever re-exported.
 import Slip from "../../assets/mainProjects/slip-image-transparent.png";
 import PuffZero from "../../assets/mainProjects/puffzero-image-transparent.png";
 import AuthFlow from "../../assets/mainProjects/auth-flow.png";
