@@ -32,6 +32,14 @@ const AiApplications = lazy(
   () => import("../components/portfolio/aiAplications"),
 );
 
+const SoftwareEngineeringAI = lazy(
+  () => import("../components/portfolio/softwareEngineeringAI"),
+);
+
+const FullStackBuilds = lazy(
+  () => import("../components/portfolio/fullStackBuilds"),
+);
+
 export default function Portfolio() {
   return (
     <div className="relative min-h-[100svh]" id="app-scroll">
@@ -72,6 +80,18 @@ export default function Portfolio() {
       <section id="projects">
         <Suspense fallback={null}>
           <Banner />
+        </Suspense>
+      </section>
+
+      <section className="px-4 py-8" id="software-engineering-ai-wrap">
+        <Suspense fallback={null}>
+          <SoftwareEngineeringAI />
+        </Suspense>
+      </section>
+
+      <section className="px-4 py-8" id="full-stack-builds-wrap">
+        <Suspense fallback={null}>
+          <FullStackBuilds />
         </Suspense>
       </section>
 
