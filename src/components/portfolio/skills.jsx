@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { InfiniteMovingCards } from "../ui/infiniteMovingCards.jsx";
-
+import { MarqueeTooltipRow } from "../ui/marqueeTooltipRow";
+import { getCategory } from "./skillsMeta";
 import Html from "../../assets/html.png";
 import Css from "../../assets/css-3.png";
 import Js from "../../assets/js.png";
@@ -141,47 +141,30 @@ const SKILLS = [
   { src: Leaflet, alt: "Leaflet", href: "https://leafletjs.com/" },
 ];
 
-export default function SkillsInfinite() {
-  const [row1, row2, row3] = useMemo(() => {
-    const rows = [[], [], []];
-    SKILLS.forEach((it, i) => rows[i % 3].push(it));
-    return rows;
-  }, []);
+// One entry per scrolling row: direction and how many seconds a full loop
+// takes. Higher duration is slower. Adding a row here automatically
+// redistributes the skills across all rows.
+const ROWS = [
+  { direction: "left", duration: 55 },
+  { direction: "right", duration: 70 },
+  { direction: "left", duration: 55 },
+];
 
-  const renderIconOnly = (it) => (
-    <a
-      href={it.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      title={it.alt}
-      className="
-        inline-grid place-items-center
-        w-20 h-20         
-        sm:w-24 sm:h-24     
-        md:w-28 md:h-28  
-        rounded-xl border
-        border-[var(--color-tile-border)] bg-[var(--color-tile)] shadow-sm
-        transition-transform duration-200 hover:scale-105
-        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-        focus-visible:ring-[var(--color-accent,theme(colors.indigo.500))]
-      "
-    >
-      <img
-        src={it.src}
-        alt={it.alt}
-        width={88}
-        height={88}
-        className="
-          w-14 h-14
-          sm:w-20 sm:h-20
-          md:w-24 md:h-24
-          object-contain
-        "
-        loading="lazy"
-        decoding="async"
-      />
-    </a>
-  );
+export default function SkillsInfinite() {
+  // Deal skills round-robin so each row mixes categories rather than clumping
+  // all the data tools onto one line.
+  const rows = useMemo(() => {
+    const buckets = ROWS.map(() => []);
+    SKILLS.forEach((skill, i) => {
+      buckets[i % ROWS.length].push({
+        id: i,
+        name: skill.alt,
+        designation: getCategory(skill.alt),
+        image: skill.src,
+      });
+    });
+    return buckets;
+  }, []);
 
   return (
     <section
@@ -190,46 +173,31 @@ export default function SkillsInfinite() {
     >
       <h2
         id="skills-title"
-        className="text-3xl md:text-4xl font-bold mb-8 text-[var(--color-text)]"
+        className="text-3xl md:text-4xl font-bold text-[var(--color-text)]"
       >
         Skills
       </h2>
+      <p className="mt-1 text-sm opacity-70 text-[var(--color-text)]">
+        Hover or tap a logo for its name.
+      </p>
 
-      {/* Line 1 */}
-      <InfiniteMovingCards
-        items={row1}
-        direction="left"
-        speed="normal"
-        pauseOnHover
-        gap="0.75rem"
-        bare
-        renderItem={renderIconOnly}
-        itemKey={(it) => it.alt}
-      />
-
-      {/* Line 2 */}
-      <InfiniteMovingCards
-        items={row2}
-        direction="right"
-        speed="slow"
-        pauseOnHover
-        gap="0.75rem"
-        bare
-        renderItem={renderIconOnly}
-        itemKey={(it) => it.alt}
-      />
-
-      {/* Line 3 */}
-      <InfiniteMovingCards
-        items={row3}
-        direction="left"
-        speed="normal"
-        pauseOnHover
-        gap="0.75rem"
-        bare
-        renderItem={renderIconOnly}
-        itemKey={(it) => it.alt}
-      />
+      {/* Every row reserves ~80px above itself so its tooltip is not clipped.
+          That space is empty until something is hovered, so the whole stack is
+          pulled up under the heading and each row after the first is pulled up
+          again — otherwise the reserved space reads as a large blank gap.
+          DOM order matters: later rows paint on top, so a row's tooltip is
+          never hidden behind the row above it. */}
+      <div className="-mt-12 flex flex-col">
+        {rows.map((items, i) => (
+          <div key={i} className={i > 0 ? "-mt-14" : ""}>
+            <MarqueeTooltipRow
+              items={items}
+              direction={ROWS[i].direction}
+              duration={ROWS[i].duration}
+            />
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
