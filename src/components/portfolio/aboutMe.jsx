@@ -6,11 +6,11 @@ export default function AboutMe() {
   const rootRef = useRef(null);
   const tlRef = useRef(null);
 
-  const TITLE = "Data Engineer";
+  const TITLE = "Engineer";
   const P1 =
-    "I'm a Data Engineer building end-to-end ELT pipelines with Apache Airflow, dbt, BigQuery, Snowflake, and SQL — turning raw, messy sources into clean, reliable, analytics-ready data. I pair that with a full-stack background in React, Node.js, and TypeScript to ship the dashboards and internal tools on top, and I use AI-assisted workflows (Claude, Cursor) to move faster. I hold a Software Development Technician degree from Cenfotec and I'm completing a Business Administration degree at LEAD University, combining technical depth with business context.";
+    "I'm an Engineer who builds across the stack — backend services, data platforms, and AI systems. I've shipped a Django caching API gateway backed by Redis, a governed image-generation pipeline that gates every prompt on budget before it spends anything, and a benchmark that measures reranked RAG against plain vector search instead of guessing. On the data side, 100M+ GitHub events through PySpark into a dbt-modeled BigQuery star schema, and a credit-risk pipeline on Apache Airflow that explains its own decisions. I ship product too — React and React Native apps with real auth and real-time data. I hold a Software Development Technician degree from Cenfotec and I'm completing a Business Administration degree at LEAD University.";
   const P2_PRE =
-    "I focus on production-minded data work — orchestration, layered transformations, and warehouse cost/performance — through real projects. See my work and progress on ";
+    "I care about production standards over demos — orchestration, cost, failure handling, and tests — across every one of those projects. See my work and progress on ";
   const P2_LINK_TEXT = "https://github.com/ffumero2003";
   const P2_POST = ".";
 

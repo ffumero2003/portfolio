@@ -17,7 +17,7 @@ export default function Headline() {
       >
         <h1 className="relative font-extrabold leading-tight">
           <span className="text-2xl md:text-3xl">
-            Data with{" "}
+            Engineering with{" "}
             <RotatingTitle
               words={[
                 "Purpose",
@@ -42,7 +42,8 @@ export default function Headline() {
         </h1>
 
         <h2 className="text-lg md:text-xl mt-6">
-          From raw sources to clean, trusted, analytics-ready data
+          Backend services, data platforms, and AI systems, built to production
+          standards
         </h2>
 
         <div className="mt-6  w-fit">

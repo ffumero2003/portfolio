@@ -4,7 +4,7 @@ import useIsDesktop from "../hooks/isDesktop";
 const TIMELINE = [
   {
     title: "Data Engineer",
-    date: "2026 · NOW",
+    date: "MAR 2026 – JUN 2026",
     desc: "Completed the CriticalRiver Data & AI Freshers Program (Mar–May 2026), building end-to-end pipelines with Apache Airflow, dbt, BigQuery, and Snowflake. Earned 18 official Anthropic AI/LLM certifications and am finishing a BBA at LEAD University (grad. Aug 2026).",
   },
   {
