@@ -3,6 +3,11 @@ import useIsDesktop from "../hooks/isDesktop";
 
 const TIMELINE = [
   {
+    title: "Software Engineer",
+    date: "AUG 2026 – PRESENT",
+    desc: "Building open source AI integrations, sample apps, SDK extensions, and reference implementations in Python, TypeScript, Go, and Rust, using AI-assisted tools like Claude Code while validating correctness, security, and performance. Contributing through code, reviews, and maintenance so repositories stay tested, documented, and ready for external adoption.",
+  },
+  {
     title: "Data Engineer",
     date: "MAR 2026 – JUN 2026",
     desc: "Completed the CriticalRiver Data & AI Freshers Program (Mar–May 2026), building end-to-end pipelines with Apache Airflow, dbt, BigQuery, and Snowflake. Earned 18 official Anthropic AI/LLM certifications and am finishing a BBA at LEAD University (grad. Aug 2026).",

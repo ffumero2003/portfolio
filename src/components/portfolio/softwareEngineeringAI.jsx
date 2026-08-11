@@ -7,6 +7,56 @@ import EldTripPlannerVideo from "../../assets/mainProjects/eld-trip-planner-vide
 // Lead section: backend services, integrations, and AI systems.
 // Order here is the order they render — strongest engineering work first.
 const PROJECTS = [
+
+  {
+    title: "B2 MCP Server — Cloud Storage an AI Can Be Trusted With",
+    oneLiner:
+      "Nine MCP tools that let an AI client manage Backblaze B2 by conversation — list, upload, download, delete, report usage against a budget — built around the question the API calls don't ask: what happens when a language model is the one calling them.",
+    overview:
+      "An MCP (Model Context Protocol) server over stdio that exposes Backblaze B2 Cloud Storage as tools any MCP-compatible AI client can call, so B2 is managed by talking to an assistant instead of writing SDK code or clicking through the web console. The interesting engineering is not the API calls, it is the guardrails around them: filesystem access denies by default and is fenced to separate read and write roots resolved through realpath; the one tool that destroys data takes an exact fileId and refuses to resolve one from a file name, so \"delete hello.txt\" cannot be satisfied in a single step; deletion is refused outright unless an append-only audit log is configured, and writes an INTENT record before acting and an OUTCOME record after, on failure too. B2 exposes no usage endpoint at all, so bucket usage is summed from file versions — including old ones, because B2 bills for those — and reported as an honest floor with the parts it cannot sum called out separately. Built in TypeScript on Node 22.",
+    tech: [
+      "TypeScript",
+      "Node.js 22",
+      "Model Context Protocol (MCP)",
+      "@modelcontextprotocol/sdk",
+      "Backblaze B2",
+      "@backblaze-labs/b2-sdk",
+      "Zod",
+      "Vitest",
+      "stdio transport",
+    ],
+    features: [
+      "Nine tools over stdio: list buckets, list files, upload, download, hide, unhide, delete a version, bucket usage against a budget, and list application keys",
+      "Local filesystem access denies by default — upload reads only from B2_UPLOAD_ROOT, download writes only to B2_DOWNLOAD_ROOT, and both refuse outright when the root is unset; separate roots so read and write can be granted independently",
+      "Containment resolved with realpath before comparison, so a symlink inside the root cannot point outside it, and checked as target === root || startsWith(root + sep) — a bare startsWith would admit the sibling directory /data/uploads-evil for the root /data/uploads",
+      "The one destructive tool cannot be aimed loosely: b2_delete_file_version takes an exact fileId and refuses to look one up from a name, so the id has to come out of a listing a human can see — a confirm flag would not help, since the same model that calls the tool would set it",
+      "Deletion refused unless an append-only audit log is configured, with an INTENT record written before the call and an OUTCOME record after, success or failure — a log that can miss events is not a log",
+      "The credentials boundary enumerates all nine fields it emits rather than spreading the SDK's key object, so a future SDK version that adds a secret-bearing field cannot leak it by accident; key creation is deliberately not implemented, because B2 returns the live secret only from createKey and that value would land in a model's context window",
+      "Partial results announce themselves — truncated/nextFileName on listings, anyTruncated and unfinishedLargeFiles on usage, and scopedToBucketId when the key's own restriction narrowed a whole-account listing to one bucket; a partial answer presented as a complete one is worse than a refusal, because the caller cannot tell",
+      "Least-privilege keys are the tested path: B2 rejects an unfiltered listBuckets from a bucket-restricted key with a 401 and the listAllBucketNames capability does not exempt it — caught by rotating the credential, not by any test, because a fake listBuckets agrees with whatever the caller does",
+      "Downloads written atomically to <target>.<pid>.partial, length-checked, and renamed onto the target only on a match — the SDK errors a checksum failure after bytes have flowed, so writing straight to the final path would strand a truncated file",
+    ],
+    video: "/aiApplications/b2McpServer/b2-mcp-server-video.mp4",
+    architecture: "/aiApplications/b2McpServer/architecture.png",
+    architectureCaption:
+      "AI client (Claude Desktop, MCP Inspector) → stdio → MCP server → nine tool handlers, each chaining loadConfig → B2 client → a core module. Two guards sit between the model and anything irreversible: the path fence (separate read and write roots, realpath-resolved, denied by default) on every tool that touches the local disk, and the audit log gate on b2_delete_file_version, which refuses to call B2 at all unless an append-only record can be written — INTENT before, OUTCOME after. Every whole-account call passes through one scope module that narrows the request to what the application key is actually allowed to see.",
+    gallery: [
+      {
+        src: "/aiApplications/b2McpServer/bucket-usage.png",
+        label: "Bucket usage against a budget B2 itself cannot report",
+      },
+      {
+        src: "/aiApplications/b2McpServer/refused-delete.png",
+        label: "Delete refused — no audit log, no destruction",
+      },
+      {
+        src: "/aiApplications/b2McpServer/audit-log.png",
+        label: "Append-only log — INTENT before, OUTCOME after",
+      },
+    ],
+    githubUrl: "https://github.com/ffumero2003/b2-mcp-server",
+  }, 
+
   {
     title: "Pre-Signed URL Upload Service",
     oneLiner:
@@ -243,6 +293,7 @@ const PROJECTS = [
     githubUrl: "https://github.com/ffumero2003/eld-trip-planner",
     liveUrl: "https://eld-trip-planner-omega.vercel.app/",
   },
+
 ];
 
 // Lead project section for the portfolio. Reorder PROJECTS above to change
