@@ -46,12 +46,12 @@ const PROJECTS = [
         label: "Bucket usage against a budget B2 itself cannot report",
       },
       {
-        src: "/aiApplications/b2McpServer/refused-delete.png",
-        label: "Delete refused — no audit log, no destruction",
+        src: "/aiApplications/b2McpServer/path-fence-refusal.png",
+        label: "Upload refused — the path escapes the configured root",
       },
       {
-        src: "/aiApplications/b2McpServer/audit-log.png",
-        label: "Append-only log — INTENT before, OUTCOME after",
+        src: "/aiApplications/b2McpServer/missing-capability.png",
+        label: "Key lacks listKeys — a plain refusal, not a raw 401",
       },
     ],
     githubUrl: "https://github.com/ffumero2003/b2-mcp-server",
