@@ -1,12 +1,47 @@
-# React + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site for Felipe Fumero, built with React 19 and Vite. Single-page layout covering intro/headline, about me, career timeline, skills, and several project showcases (software engineering + AI, full-stack builds, data engineering, data analytics/BI, and smaller practice projects), plus a contact section.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 19** + **React Router 7** (client-side routing via `createBrowserRouter`)
+- **Vite 7** for dev server and build
+- **Tailwind CSS 3** + **Sass** for styling
+- **GSAP** and **Framer Motion / motion** for animation and scroll reveals
+- **Three.js** via `@react-three/fiber` / `@react-three/drei`, plus **Vanta.js** and **Spline** for background/3D visuals
+- **Lottie** (`lottie-react`, `lottie-web`) for vector animations
+- **EmailJS** for the contact form
+- **Font Awesome** for icons
 
-## Expanding the ESLint configuration
+## Project structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
+src/
+  App.jsx                 # Router entry point
+  routes.jsx               # Route definitions
+  layout/rootLayout.jsx     # Shared layout wrapper
+  pages/portfolio.jsx       # Main page, composes all sections
+  components/
+    portfolio/               # Page sections (headline, aboutMe, skills,
+                              #   timelineSection, projectsSection,
+                              #   fullStackBuilds, dataEngineering,
+                              #   dataAnalytics, softwareEngineeringAI,
+                              #   contactSection, footer, navigation, ...)
+    ui/                       # Reusable UI primitives (tooltip, cards)
+    gsap/, hooks/             # Animation helpers and custom hooks
+  utils/                    # GSAP setup, scramble text, lord-icon init
+  styles/                   # Sass reset, variables, global styles
+  assets/                   # Images, logos, and project screenshots
+```
+
+## Getting started
+
+```bash
+npm install
+npm run dev       # start the dev server
+npm run build     # production build to dist/
+npm run preview   # preview the production build locally
+npm run lint      # run ESLint
+```
+
+Deployed via Vercel (`vercel.json` rewrites all routes to `index.html` for client-side routing).
