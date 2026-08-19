@@ -40,8 +40,8 @@ const PROJECTS = [
       "A quit-tracking mobile app with a real backend behind it: Supabase handles authentication and persistence, and tracking updates in real time rather than on refresh. Includes a guided onboarding flow and multi-currency support, so the money-saved figures make sense outside a single locale. Built in TypeScript on React Native and Expo.",
     tech: ["React Native", "Expo", "Supabase", "Full-Stack", "TypeScript"],
     poster: PuffZero,
-    githubUrl: "https://github.com/ffumero2003/project2",
-    githubComingSoon: true, // repo not public yet — renders a disabled chip
+    githubUrl: "https://github.com/ffumero2003/portfolio",
+    githubComingSoon: false, // repo not public yet — renders a disabled chip
     liveUrl: "https://puffzero-landing.vercel.app/",
     liveLabel: "Live",
   },
