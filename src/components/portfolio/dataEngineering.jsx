@@ -137,7 +137,6 @@ const PROJECTS = [
       "Idempotent, validated daily ingestion orchestrated as an Apache Airflow DAG (download → Spark → dbt run → dbt test), halting on any failure",
     ],
     video: "/dataEngineering/githubFirehose/github-firehose-video.mp4",
-    poster: "/dataEngineering/githubFirehose/REPLACE-with-poster.png",
     architecture: "/dataEngineering/githubFirehose/architecture.png",
     architectureCaption:
       "GitHub Archive (raw nested .json.gz) → Python (idempotent download + validation) → PySpark (explicit schema, filter, flatten, explode commits) → BigQuery (star schema: 2 facts + 4 dims, direct Storage Write API) → dbt (5 marts + 11 tests) → Looker Studio dashboard. Orchestrated daily by an Apache Airflow DAG.",
